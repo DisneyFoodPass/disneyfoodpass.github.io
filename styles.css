@@ -32,16 +32,17 @@ body::before{
 .top{padding:28px 16px;text-align:center;z-index:2;position:relative}
 .brand{
   font-family:var(--headline-font);
-  font-weight:800;
-  font-size:1.6rem; /* larger title */
-  letter-spacing:0.8px;
+  font-weight:900;
+  font-size:2.4rem; /* larger, page-title scale */
+  letter-spacing:0.6px;
   color:var(--text);
   margin-top:6px;
   display:inline-block;
-  padding:6px 12px;
+  padding:8px 14px;
   border-radius:10px;
   background:linear-gradient(90deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-  box-shadow:0 8px 24px rgba(2,6,23,0.35);
+  box-shadow:0 10px 30px rgba(2,6,23,0.35);
+  line-height:1;
 }
 
 /* main stage */
@@ -104,7 +105,7 @@ body::before{
   .hero{grid-template-columns:1fr;gap:18px}
   .poster{max-width:100%}
   .headline{font-size:1.35rem}
-  .brand{font-size:1.25rem;padding:6px 10px}
+  .brand{font-size:1.5rem;padding:6px 10px}
   .stage{padding:28px 12px}
   .summary{margin-top:28px}
   .feed{margin:36px 0}
