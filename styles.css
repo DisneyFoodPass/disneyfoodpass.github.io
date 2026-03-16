@@ -1,16 +1,17 @@
 :root{
-  --bg:#0b1220; /* deep navy */
-  --vignette: radial-gradient(ellipse at center, rgba(255,255,255,0.12) 0%, rgba(255,255,255,0.06) 12%, rgba(255,255,255,0.02) 28%, transparent 60%);
-  --accent:#ffd166; /* warm gold */
+  --bg:#0b1220;
+  --vignette: radial-gradient(ellipse at center, rgba(255,255,255,0.14) 0%, rgba(255,255,255,0.06) 12%, rgba(255,255,255,0.02) 28%, transparent 60%);
+  --accent:#ffd166;
   --muted:rgba(255,255,255,0.78);
   --text:#f8fbff;
   --card:#0f1724;
   --max:980px;
   --radius:12px;
   --gap:20px;
-  --glass: rgba(255,255,255,0.03);
   --shadow: 0 12px 36px rgba(2,6,23,0.6);
-  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  --ui-font: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --headline-font: "Playfair Display", Georgia, "Times New Roman", serif;
+  font-family: var(--ui-font);
   -webkit-font-smoothing:antialiased;
   -moz-osx-font-smoothing:grayscale;
 }
@@ -19,7 +20,7 @@
 html,body{height:100%;margin:0;background:var(--bg);color:var(--text)}
 body{display:flex;flex-direction:column;min-height:100vh}
 
-/* subtle centered light vignette */
+/* centered soft light */
 body::before{
   content:"";position:fixed;inset:0;pointer-events:none;
   background:var(--vignette);
@@ -28,13 +29,13 @@ body::before{
 
 /* header */
 .top{padding:28px 16px;text-align:center;z-index:2;position:relative}
-.brand{font-weight:700;font-size:1.05rem;letter-spacing:0.6px;font-family:"Playfair Display",serif}
+.brand{font-weight:700;font-size:1.05rem;letter-spacing:0.6px;font-family:var(--headline-font)}
 
 /* main stage */
 .stage{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding:18px 16px;z-index:1}
 .hero{width:100%;max-width:var(--max);display:grid;grid-template-columns:1fr 360px;gap:var(--gap);align-items:center;margin-top:8vh}
 .hero-left{padding:6px}
-.headline{font-family:"Playfair Display",serif;font-size:1.6rem;margin:0;color:var(--text);line-height:1.02;font-weight:700;letter-spacing:-0.5px}
+.headline{font-family:var(--headline-font);font-size:1.6rem;margin:0;color:var(--text);line-height:1.02;font-weight:700;letter-spacing:-0.5px}
 .subhead{margin:8px 0 0;color:var(--muted);font-size:0.95rem}
 
 /* poster */
