@@ -3,61 +3,64 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>@DisneyFoodPass — Minimal</title>
-  <meta name="description" content="@DisneyFoodPass — Disney park food guide, minimal site." />
+  <title>@DisneyFoodPass — Minimal Guide</title>
+  <meta name="description" content="@DisneyFoodPass — Disney park food guide, seasonal PDFs and photo feed." />
+
+  <!-- Google fonts: Inter for UI, Playfair Display for headline -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <header class="top">
+  <header class="top" role="banner">
     <div class="brand">@DisneyFoodPass</div>
   </header>
 
-  <main class="center-stage" id="main">
-    <section class="hero">
+  <main class="stage" id="main" role="main">
+    <section class="hero" aria-labelledby="hero-title">
       <div class="hero-left">
-        <h2 class="big-claim">The Only Foodie Guide You'll Ever Neeeed Guranteeeeed*</h2>
-        <p class="small-claim"><em>*Not Actually Guranteed, But Extremely Likely! Haha</em></p>
+        <h1 id="hero-title" class="headline">The Only Foodie Guide You'll Ever Neeeed Guranteeeeed*</h1>
+        <p class="subhead"><em>*Not Actually Guranteed, But Extremely Likely! Haha</em></p>
       </div>
 
-      <div class="hero-right">
-        <!-- Poster area: replace poster.jpg with your image uploaded to images/poster.jpg -->
-        <div class="poster-wrap" aria-hidden="false">
+      <div class="hero-right" aria-hidden="false">
+        <div class="poster">
           <img src="images/poster.jpg" alt="Poster for @DisneyFoodPass" id="poster-img" loading="lazy">
         </div>
       </div>
     </section>
 
-    <section class="blurb">
-      <p class="center">
-        Each Photo, Description, Location and Price of Every Single New, Seasonal, and Limited Time Offerings from Everywhere throughout both Disneyland and Disney California Adventure are all organized into One Page Per Land!!
+    <section class="summary" aria-label="Summary">
+      <p class="summary-text">
+        Each Photo, Description, Location and Price of Every Single New, Seasonal, and Limited Time Offerings from Everywhere throughout both Disneyland and Disney California Adventure are all organized into One Page Per Land.
       </p>
 
-      <form id="early-form" class="email-form" action="https://formspree.io/f/FORM_SPR_EE_ENDPOINT" method="POST">
-        <label for="email" class="sr-only">Email address</label>
-        <input id="email" name="email" type="email" placeholder="you@example.com" required>
-        <button type="submit" class="btn">Click Here For Early Access To The PDF Every Season</button>
-        <p class="form-note">We’ll email you the seasonal PDF and occasional updates.</p>
+      <form id="early-form" class="email-form" action="https://formspree.io/f/FORM_SPR_EE_ENDPOINT" method="POST" novalidate>
+        <div class="form-row">
+          <label for="email" class="sr-only">Email address</label>
+          <input id="email" name="email" type="email" placeholder="you@example.com" required autocomplete="email">
+          <button type="submit" class="btn">Click Here For Early Access To The PDF Every Season</button>
+        </div>
+        <p class="form-note">We’ll email the seasonal PDF and occasional updates. No spam. Unsubscribe anytime.</p>
         <div id="form-msg" class="form-msg" aria-live="polite"></div>
       </form>
     </section>
 
-    <section id="feed" class="feed-section">
-      <h3 class="feed-title">Latest from @DisneyFoodPass</h3>
+    <section id="feed" class="feed" aria-labelledby="feed-heading">
+      <h2 id="feed-heading" class="feed-title">Latest from @DisneyFoodPass</h2>
 
-      <!-- Instagram feed container -->
       <div id="instagram-feed" class="feed-grid" aria-live="polite">
-        <!-- Placeholder thumbnails -->
-        <div class="ph"></div><div class="ph"></div><div class="ph"></div>
-        <div class="ph"></div><div class="ph"></div><div class="ph"></div>
+        <!-- Placeholder tiles; will be replaced by widget or Worker feed -->
+        <div class="tile ph"></div><div class="tile ph"></div><div class="tile ph"></div>
+        <div class="tile ph"></div><div class="tile ph"></div><div class="tile ph"></div>
       </div>
 
-      <!-- Option: paste third-party widget script or set WORKER_URL in scripts.js -->
-      <!-- If using a widget, paste its snippet below this comment -->
+      <!-- Paste third-party widget snippet or set WORKER_URL in scripts.js -->
       <!-- WORKER_OR_WIDGET_SNIPPET -->
     </section>
   </main>
 
-  <footer class="foot">
+  <footer class="foot" role="contentinfo">
     <small>&copy; <span id="year"></span> @DisneyFoodPass — Not affiliated with The Walt Disney Company.</small>
   </footer>
 
