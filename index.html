@@ -3,127 +3,65 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>@DisneyFoodPass — Disney food finds, menus, and tips</title>
-
-  <!-- SEO -->
-  <meta name="description" content="@DisneyFoodPass shares Disney park snacks, quick reviews, and where to find the best treats." />
-  <meta property="og:title" content="@DisneyFoodPass — Disney food finds" />
-  <meta property="og:description" content="Follow @DisneyFoodPass for the latest Disney park food discoveries and tips." />
-  <meta property="og:type" content="website" />
-  <meta property="og:image" content="images/og-image.jpg" />
-  <meta name="twitter:card" content="summary_large_image" />
-
+  <title>@DisneyFoodPass — Minimal</title>
+  <meta name="description" content="@DisneyFoodPass — Disney park food guide, minimal site." />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <header class="site-header" role="banner">
-    <div class="wrap header-inner">
-      <a class="brand" href="/">
-        <!-- Simple friendly badge logo -->
-        <svg class="logo" width="48" height="48" viewBox="0 0 64 64" aria-hidden="true" focusable="false">
-          <defs><linearGradient id="g" x1="0" x2="1"><stop offset="0" stop-color="#ffd6e0"/><stop offset="1" stop-color="#cfe8ff"/></linearGradient></defs>
-          <rect rx="12" width="64" height="64" fill="url(#g)"></rect>
-          <g transform="translate(8,10)" fill="#fff">
-            <path d="M16 0 L20 8 L28 10 L22 16 L24 24 L16 20 L8 24 L10 16 L4 10 L12 8 Z" opacity="0.95"></path>
-          </g>
-        </svg>
-        <div class="brand-text">
-          <strong>@DisneyFoodPass</strong>
-          <small>Disney food finds & tips</small>
-        </div>
-      </a>
-
-      <nav class="main-nav" role="navigation" aria-label="Main">
-        <a href="#latest">Latest</a>
-        <a href="#feed">Feed</a>
-        <a href="#about">About</a>
-      </nav>
-    </div>
+  <header class="top">
+    <div class="brand">@DisneyFoodPass</div>
   </header>
 
-  <main class="wrap" id="main" role="main">
+  <main class="center-stage" id="main">
     <section class="hero">
-      <div class="hero-inner">
-        <h1>Find the magic in every bite</h1>
-        <p class="lead">Quick reviews, where to find the snacks, and tips for enjoying the best treats across Disney parks — curated by <strong>@DisneyFoodPass</strong>.</p>
-        <div class="hero-cta">
-          <a class="btn primary" href="https://www.instagram.com/disneyfoodpass" target="_blank" rel="noopener">Follow @DisneyFoodPass on Instagram</a>
-          <a class="btn ghost" href="#feed">See the feed</a>
+      <div class="hero-left">
+        <h2 class="big-claim">The Only Foodie Guide You'll Ever Neeeed Guranteeeeed*</h2>
+        <p class="small-claim"><em>*Not Actually Guranteed, But Extremely Likely! Haha</em></p>
+      </div>
+
+      <div class="hero-right">
+        <!-- Poster area: replace poster.jpg with your image uploaded to images/poster.jpg -->
+        <div class="poster-wrap" aria-hidden="false">
+          <img src="images/poster.jpg" alt="Poster for @DisneyFoodPass" id="poster-img" loading="lazy">
         </div>
       </div>
-      <div class="hero-bg" aria-hidden="true"></div>
     </section>
 
-    <section id="latest" class="cards">
-      <h2>Latest posts</h2>
-      <div class="card-grid">
-        <!-- Example static cards; replace with dynamic content later -->
-        <article class="card">
-          <img src="images/sample1.jpg" alt="Mickey-shaped waffle with berries" loading="lazy">
-          <div class="card-body">
-            <h3>Morning Mickey Waffles</h3>
-            <p>Soft waffles shaped like Mickey, topped with fresh berries and a drizzle of maple.</p>
-          </div>
-        </article>
+    <section class="blurb">
+      <p class="center">
+        Each Photo, Description, Location and Price of Every Single New, Seasonal, and Limited Time Offerings from Everywhere throughout both Disneyland and Disney California Adventure are all organized into One Page Per Land!!
+      </p>
 
-        <article class="card">
-          <img src="images/sample2.jpg" alt="Dole Whip with churro" loading="lazy">
-          <div class="card-body">
-            <h3>Dole Whip Delight</h3>
-            <p>Classic pineapple swirl with a seasonal churro twist — a must-try.</p>
-          </div>
-        </article>
-
-        <article class="card">
-          <img src="images/sample3.jpg" alt="Colorful snack platter" loading="lazy">
-          <div class="card-body">
-            <h3>Festival Platter</h3>
-            <p>Shareable platter from the food festival — great for groups and photos.</p>
-          </div>
-        </article>
-      </div>
+      <form id="early-form" class="email-form" action="https://formspree.io/f/FORM_SPR_EE_ENDPOINT" method="POST">
+        <label for="email" class="sr-only">Email address</label>
+        <input id="email" name="email" type="email" placeholder="you@example.com" required>
+        <button type="submit" class="btn">Click Here For Early Access To The PDF Every Season</button>
+        <p class="form-note">We’ll email you the seasonal PDF and occasional updates.</p>
+        <div id="form-msg" class="form-msg" aria-live="polite"></div>
+      </form>
     </section>
 
-    <section id="feed" class="instagram-section" aria-labelledby="feed-heading">
-      <div class="section-head">
-        <h2 id="feed-heading">Instagram Feed</h2>
-        <p class="muted">Live updates from <strong>@DisneyFoodPass</strong>. The feed loads automatically below.</p>
+    <section id="feed" class="feed-section">
+      <h3 class="feed-title">Latest from @DisneyFoodPass</h3>
+
+      <!-- Instagram feed container -->
+      <div id="instagram-feed" class="feed-grid" aria-live="polite">
+        <!-- Placeholder thumbnails -->
+        <div class="ph"></div><div class="ph"></div><div class="ph"></div>
+        <div class="ph"></div><div class="ph"></div><div class="ph"></div>
       </div>
 
-      <!-- FEED CONTAINER: the live feed or widget will populate this element -->
-      <div id="instagram-feed" class="feed-grid" data-username="@DisneyFoodPass" aria-live="polite">
-        <!-- Placeholder thumbnails while feed loads -->
-        <div class="placeholder-grid" aria-hidden="true">
-          <div class="ph"></div><div class="ph"></div><div class="ph"></div>
-          <div class="ph"></div><div class="ph"></div><div class="ph"></div>
-        </div>
-      </div>
-
-      <div class="feed-actions">
-        <a class="btn primary" href="https://www.instagram.com/disneyfoodpass" target="_blank" rel="noopener">Open @DisneyFoodPass on Instagram</a>
-      </div>
-
-      <!-- Integration notes -->
-      <!--
-        To add a live feed:
-        - Option 1 (fast): paste your third-party widget script here (provider gives snippet).
-        - Option 2 (recommended long-term): set WORKER_URL in scripts/feed.js to your Cloudflare Worker endpoint.
-      -->
-    </section>
-
-    <section id="about" class="about">
-      <h2>About @DisneyFoodPass</h2>
-      <p>@DisneyFoodPass shares quick, friendly reviews and exact locations for the best snacks across Disney parks. Photos are credited when reposted; original content is created by the account owner.</p>
+      <!-- Option: paste third-party widget script or set WORKER_URL in scripts.js -->
+      <!-- If using a widget, paste its snippet below this comment -->
+      <!-- WORKER_OR_WIDGET_SNIPPET -->
     </section>
   </main>
 
-  <footer class="site-footer" role="contentinfo">
-    <div class="wrap">
-      <small>&copy; <span id="year"></span> @DisneyFoodPass — Not affiliated with The Walt Disney Company.</small>
-    </div>
+  <footer class="foot">
+    <small>&copy; <span id="year"></span> @DisneyFoodPass — Not affiliated with The Walt Disney Company.</small>
   </footer>
 
-  <script src="scripts/feed.js"></script>
+  <script src="scripts.js"></script>
   <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
 </body>
 </html>
