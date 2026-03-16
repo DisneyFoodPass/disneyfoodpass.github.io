@@ -1,9 +1,8 @@
-// Minimal scripts for form handling and feed placeholder
+// Minimal scripts: form handling and optional Worker feed loader
 document.addEventListener('DOMContentLoaded', () => {
   const form = document.getElementById('early-form');
   const msg = document.getElementById('form-msg');
 
-  // Replace FORM_SPR_EE_ENDPOINT in index.html with your Formspree form id before using.
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
     msg.textContent = 'Sending...';
@@ -26,10 +25,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // Instagram feed placeholder behavior
-  // If you later set WORKER_URL or paste a widget snippet, the feed will be replaced.
-  // Optionally, if you have a Worker endpoint that returns { items: [{image, link}] }, set WORKER_URL below.
-  const WORKER_URL = ''; // <-- optional: set to your Cloudflare Worker or JSON endpoint
+  // Optional: set WORKER_URL to your Cloudflare Worker or JSON endpoint that returns:
+  // { items: [{ image: "https://...", link: "https://...", caption: "..." }, ...] }
+  const WORKER_URL = ''; // <-- paste your Worker or JSON endpoint here
 
   async function loadWorkerFeed() {
     if (!WORKER_URL) return;
