@@ -1,13 +1,42 @@
 <!doctype html>
-<html>
-<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Disney Food Pass</title><link rel="stylesheet" href="styles.css"></head>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Disney Food Pass</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
 <body>
-<header><h1>Disney Food Pass</h1></header>
-<main>
-<p>Latest Disney food finds, menus, and tips.</p>
-<a href="https://www.instagram.com/disneyfoodpass" target="_blank">Follow on Instagram</a>
-</main>
-<footer>&copy; Disney Food Pass</footer>
+  <header class="site-header">
+    <div class="wrap">
+      <h1>Disney Food Pass</h1>
+      <p class="tag">Disney food finds, menus, and tips</p>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="hero">
+      <p>Latest Disney food discoveries, quick reviews, and where to find the best snacks in the parks.</p>
+      <a class="btn" href="https://www.instagram.com/disneyfoodpass" target="_blank" rel="noopener">Follow on Instagram</a>
+    </section>
+
+    <section class="posts">
+      <h2>Latest</h2>
+      <p>Check our Instagram for the newest photos and short reviews. Click the button above to follow.</p>
+    </section>
+
+    <section class="about">
+      <h2>About</h2>
+      <p>We share photos, quick reviews, and tips for finding the best food across Disney parks.</p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">&copy; <span id="year"></span> Disney Food Pass</div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
