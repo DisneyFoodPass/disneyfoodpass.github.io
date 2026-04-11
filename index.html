@@ -1,78 +1,97 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>@DisneyFoodPass — Minimal Guide</title>
-  <meta name="description" content="@DisneyFoodPass — Disney park food guide, seasonal PDFs and photo feed." />
-  <meta property="og:title" content="@DisneyFoodPass — Disney food guide" />
-  <meta property="og:description" content="Photos, locations, prices, and seasonal offerings across Disneyland and Disney California Adventure." />
-  <meta property="og:image" content="/images/og-image.jpg" />
-  <meta name="twitter:card" content="summary_large_image" />
-
-  <!-- Fonts: Playfair Display for headline, Inter for UI -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
-
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="styles.css" />
+  <title>DisneyFoodPass</title>
 </head>
+
 <body>
-  <header class="top" role="banner">
-    <div class="brand">@DisneyFoodPass</div>
+
+  <!-- FIXED HEADER -->
+  <header class="dfp-header">
+    <div class="dfp-header-inner">
+      <img src="1DisneyFoodPass Font_ WHITE.png" class="dfp-logo" alt="DisneyFoodPass Logo">
+
+      <div class="dfp-icons">
+        <a href="https://instagram.com/disneyfoodpass" target="_blank">
+          <img src="icons/instagram.png" alt="Instagram">
+        </a>
+        <a href="https://tiktok.com/@disneyfoodpass" target="_blank">
+          <img src="icons/tiktok.png" alt="TikTok">
+        </a>
+        <a href="https://facebook.com/disneyfoodpass" target="_blank">
+          <img src="icons/facebook.png" alt="Facebook">
+        </a>
+        <a href="https://venmo.com/disneyfoodpass" target="_blank">
+          <img src="icons/venmo.png" alt="Venmo">
+        </a>
+      </div>
+    </div>
   </header>
 
-  <main class="stage" id="main" role="main">
-    <section class="hero" aria-labelledby="hero-title">
-      <div class="hero-left">
-        <h1 id="hero-title" class="headline">The Only Disney Foodie Guide You'll Ever Neeeed Guranteeeeed*</h1>
-        <p class="subhead"><em>*Not Actually Guranteed, But Extremely Likely! Haha</em></p>
-      </div>
+  <main>
 
-      <div class="hero-right" aria-hidden="false">
-        <div class="poster">
-          <img src="images/poster.jpg" alt="Poster for @DisneyFoodPass" id="poster-img" loading="lazy">
-        </div>
+    <!-- HERO HEADLINE -->
+    <section class="dfp-hero">
+      <h1 class="dfp-headline">
+        The Only Disney Foodie Guide You'll Ever Neeeed Guranteeeeed*
+        <br>
+        <span class="dfp-subheadline">
+          *Not Actually Guaranteed, But Extremely Likely! Haha
+        </span>
+      </h1>
+    </section>
+
+    <!-- FEATURED POSTS -->
+    <section class="dfp-featured">
+      <div class="featured-grid">
+
+        <!-- Replace these 3 URLs with your pinned posts -->
+        <a class="featured-item" href="PASTE_POST_URL_1" target="_blank">
+          <img src="PASTE_IMAGE_URL_1" alt="Featured Post 1">
+        </a>
+
+        <a class="featured-item" href="PASTE_POST_URL_2" target="_blank">
+          <img src="PASTE_IMAGE_URL_2" alt="Featured Post 2">
+        </a>
+
+        <a class="featured-item" href="PASTE_POST_URL_3" target="_blank">
+          <img src="PASTE_IMAGE_URL_3" alt="Featured Post 3">
+        </a>
+
       </div>
     </section>
 
-    <section class="summary" aria-label="Summary">
-      <p class="summary-text">
+    <!-- SUMMARY -->
+    <section class="dfp-summary">
+      <p>
         Each Photo, Description, Location and Price of Every Single New, Seasonal, and Limited Time Offerings from Everywhere throughout both Disneyland and Disney California Adventure are all organized into One Page Per Land.
       </p>
+    </section>
 
-      <form id="early-form" class="email-form" action="https://formspree.io/f/FORM_SPR_EE_ENDPOINT" method="POST" novalidate>
-        <div class="form-row">
-          <label for="email" class="sr-only">Email address</label>
-          <input id="email" name="email" type="email" placeholder="you@example.com" required autocomplete="email">
-          <button type="submit" class="btn">Click Here For Early Access To The PDF Every Season</button>
-        </div>
-        <p class="form-note">We’ll email the seasonal PDF and occasional updates. No spam. Unsubscribe anytime.</p>
-        <div id="form-msg" class="form-msg" aria-live="polite"></div>
+    <!-- EMAIL FORM -->
+    <section class="dfp-email">
+      <form class="email-form">
+        <input type="email" placeholder="Enter your email" required>
+        <button type="submit" class="btn">Send Me the Guide!</button>
       </form>
+      <p class="form-note">No spam. Just magic.</p>
     </section>
 
-    <section id="feed" class="feed" aria-labelledby="feed-heading">
-      <h2 id="feed-heading" class="feed-title">Latest from @DisneyFoodPass</h2>
-
-      <div id="instagram-feed" class="feed-grid" aria-live="polite">
-        <div class="tile ph"></div><div class="tile ph"></div><div class="tile ph"></div>
-        <div class="tile ph"></div><div class="tile ph"></div><div class="tile ph"></div>
-      </div>
-
-      <!--
-        To enable live feed:
-        - Fast: paste third-party widget snippet here (provider will render into the container).
-        - Long-term: deploy Cloudflare Worker returning { items: [{image,link,caption}] } and set WORKER_URL in scripts.js.
-      -->
+    <!-- LATEST TITLE -->
+    <section class="dfp-latest-title">
+      <h2>Latest from @DisneyFoodPass</h2>
     </section>
+
+    <!-- AUTO-UPDATING FEED -->
+    <section class="dfp-feed">
+      <div id="feed-grid" class="feed-grid"></div>
+    </section>
+
   </main>
 
-  <footer class="foot" role="contentinfo">
-    <small>&copy; <span id="year"></span> @DisneyFoodPass — Not affiliated with The Walt Disney Company.</small>
-  </footer>
-
   <script src="scripts.js"></script>
-  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
 </body>
 </html>
