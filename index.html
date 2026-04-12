@@ -94,34 +94,33 @@
 
   <!-- INSTAGRAM FEED SCRIPT -->
   <script>
-  async function loadInstagramFeed() {
-    try {
-      const response = await fetch("https://disneyfoodpass-instagram.disneyfoodpass.workers.dev/instagram");
-      const data = await response.json();
+    async function loadInstagramFeed() {
+      try {
+        const response = await fetch("https://disneyfoodpass-instagram.disneyfoodpass.workers.dev/instagram");
+        const data = await response.json();
 
-      if (!data.data) {
-        document.getElementById("feed-grid").innerHTML = "Unable to load Instagram feed.";
-        return;
+        if (!data.data) {
+          document.getElementById("feed-grid").innerHTML = "Unable to load Instagram feed.";
+          return;
+        }
+
+        const posts = data.data;
+
+        const html = posts.map(post => `
+          <a href="${post.permalink}" target="_blank">
+            <img src="${post.media_type === 'VIDEO' ? post.thumbnail_url : post.media_url}" alt="Instagram Post">
+          </a>
+        `).join("");
+
+        document.getElementById("feed-grid").innerHTML = html;
+
+      } catch (err) {
+        document.getElementById("feed-grid").innerHTML = "Error loading feed.";
       }
-
-      const posts = data.data;
-
-      const html = posts.map(post => `
-        <a href="${post.permalink}" target="_blank">
-          <img src="${post.media_type === 'VIDEO' ? post.thumbnail_url : post.media_url}" alt="Instagram Post">
-        </a>
-      `).join("");
-
-      document.getElementById("feed-grid").innerHTML = html;
-
-    } catch (err) {
-      document.getElementById("feed-grid").innerHTML = "Error loading feed.";
     }
-  }
 
-  loadInstagramFeed();
-</script>
-
+    loadInstagramFeed();
+  </script>
 
 </body>
 </html>
