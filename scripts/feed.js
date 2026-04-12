@@ -1,6 +1,9 @@
+// Minimal scripts: form handling only
 document.addEventListener('DOMContentLoaded', () => {
   const form = document.getElementById('early-form');
   const msg = document.getElementById('form-msg');
+
+  if (!form) return; // prevents errors if form isn't on the page
 
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -24,4 +27,3 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 });
-
