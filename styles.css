@@ -146,7 +146,7 @@ body::before{
   font-weight:700;
 }
 
-/* FEED GRID */
+/* FEED GRID (EXISTING) */
 .feed-grid{
   display:grid;
   grid-template-columns:repeat(auto-fit, minmax(120px, 1fr));
@@ -161,4 +161,21 @@ body::before{
   object-fit:cover;
   border-radius:10px;
   box-shadow:0 6px 20px rgba(0,0,0,0.4);
+}
+
+/* ================================
+   INSTAGRAM FEED (NEW ADDITIONS)
+================================ */
+
+.feed-item img{
+  width:100%;
+  height:120px;
+  object-fit:cover;
+  border-radius:10px;
+  box-shadow:0 6px 20px rgba(0,0,0,0.4);
+  transition:transform 0.2s ease;
+}
+
+.feed-item img:hover{
+  transform:scale(1.05);
 }
