@@ -41,7 +41,7 @@ body::before{
 .dfp-header-inner{
   width:100%;
   max-width:1200px;
-  height:100%;          /* ✅ make inner fill full header height */
+  height:100%;          /* fill full header height */
   display:flex;
   align-items:center;
   justify-content:center;
@@ -56,7 +56,7 @@ body::before{
 .dfp-icons{
   position:absolute;
   right:20px;
-  bottom:10px;
+  bottom:0;             /* flush to bottom on desktop */
   display:flex;
   gap:18px;
 }
@@ -191,17 +191,22 @@ body::before{
 ============================ */
 @media (max-width: 600px) {
 
+  /* give more vertical room so logo never gets cut off */
   .dfp-header {
-    height:120px;
+    height:150px;
   }
 
   .dfp-logo {
     height:50px;
   }
 
-  /* now bottom:0 is the true bottom of the header */
   .dfp-icons {
-    bottom:0;
+    bottom:0;          /* flush to bottom on mobile too */
+  }
+
+  /* match hero offset to taller header */
+  .dfp-hero {
+    padding-top:190px;
   }
 }
 
