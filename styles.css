@@ -62,6 +62,12 @@ body::before{
   object-fit:contain;
 }
 
+/* Venmo icon size adjustment */
+.dfp-icons img[alt="Venmo"] {
+  width:36px;
+  height:36px;
+}
+
 /* HERO */
 .dfp-hero{
   padding-top:160px;
