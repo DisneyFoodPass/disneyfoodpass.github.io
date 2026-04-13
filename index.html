@@ -12,20 +12,20 @@
   <!-- FIXED HEADER -->
   <header class="dfp-header">
     <div class="dfp-header-inner">
-      <img src="assets/branding/1DisneyFoodPassFontWHITE.png" class="dfp-logo" alt="DisneyFoodPass Logo">
+      <img src="images/1DisneyFoodPassFontWHITE.png" class="dfp-logo" alt="DisneyFoodPass Logo">
 
       <div class="dfp-icons">
         <a href="https://instagram.com/disneyfoodpass" target="_blank">
-          <img src="assets/icons/instagram.png" alt="Instagram">
+          <img src="images/icons/instagram.png" alt="Instagram">
         </a>
         <a href="https://tiktok.com/@disneyfoodpass" target="_blank">
-          <img src="assets/icons/tiktok.png" alt="TikTok">
+          <img src="images/icons/tiktok.png" alt="TikTok">
         </a>
         <a href="https://facebook.com/disneyfoodpass" target="_blank">
-          <img src="assets/icons/facebook.png" alt="Facebook">
+          <img src="images/icons/facebook.png" alt="Facebook">
         </a>
         <a href="https://venmo.com/disneyfoodpass" target="_blank">
-          <img src="assets/icons/venmo.png" alt="Venmo">
+          <img src="images/icons/venmo.png" alt="Venmo">
         </a>
       </div>
     </div>
@@ -53,7 +53,7 @@
            href="https://www.instagram.com/p/DVriNVPErth/?img_index=1" 
            target="_blank">
           <img 
-            src="https://scontent.cdninstagram.com/v/t51.29350-15/441020983_18408301397694014_9218983411259246660_n.jpg?_nc_ht=scontent.cdninstagram.com&_nc_cat=111&_nc_ohc=8q8vZx1t8mIQ7kNvgH2xg&edm=APs17CUBAAAA&ccb=7-5&oh=00_AYC8y0Q0lQe6v7E2Hk1p8p6mV0x7z8pYp0&oe=6640A2F1&_nc_sid=10d13b" 
+            src="https://scontent.cdninstagram.com/v/t51.29350-15/441020983_18408301397694014_9218983411259246660_n.jpg" 
             alt="Featured Post 1">
         </a>
 
@@ -62,7 +62,7 @@
            href="https://www.instagram.com/p/DVuG1eekrFb/" 
            target="_blank">
           <img 
-            src="https://scontent.cdninstagram.com/v/t51.29350-15/441095123_18408301397694014_9218983411259246660_n.jpg?_nc_ht=scontent.cdninstagram.com&_nc_cat=111&_nc_ohc=8q8vZx1t8mIQ7kNvgH2xg&edm=APs17CUBAAAA&ccb=7-5&oh=00_AYC8y0Q0lQe6v7E2Hk1p8p6mV0x7z8pYp0&oe=6640A2F1&_nc_sid=10d13b" 
+            src="https://scontent.cdninstagram.com/v/t51.29350-15/441095123_18408301397694014_9218983411259246660_n.jpg" 
             alt="Featured Post 2">
         </a>
 
@@ -71,7 +71,7 @@
            href="https://www.instagram.com/p/DVriNVPErth/?img_index=2" 
            target="_blank">
           <img 
-            src="https://scontent.cdninstagram.com/v/t51.29350-15/441021456_18408301397694014_9218983411259246660_n.jpg?_nc_ht=scontent.cdninstagram.com&_nc_cat=111&_nc_ohc=8q8vZx1t8mIQ7kNvgH2xg&edm=APs17CUBAAAA&ccb=7-5&oh=00_AYC8y0Q0lQe6v7E2Hk1p8p6mV0x7z8pYp0&oe=6640A2F1&_nc_sid=10d13b" 
+            src="https://scontent.cdninstagram.com/v/t51.29350-15/441021456_18408301397694014_9218983411259246660_n.jpg" 
             alt="Featured Post 3">
         </a>
 
@@ -106,35 +106,8 @@
 
   </main>
 
-  <!-- INSTAGRAM FEED SCRIPT (inline, original working version) -->
-  <script>
-    async function loadInstagramFeed() {
-      try {
-        const response = await fetch("https://disneyfoodpass-instagram.disneyfoodpass.workers.dev/instagram");
-        const data = await response.json();
-
-        if (!data.data) {
-          document.getElementById("feed-grid").innerHTML = "Unable to load Instagram feed.";
-          return;
-        }
-
-        const posts = data.data;
-
-        const html = posts.map(post => `
-          <a href="${post.permalink}" target="_blank">
-            <img src="${post.media_type === 'VIDEO' ? post.thumbnail_url : post.media_url}" alt="Instagram Post">
-          </a>
-        `).join("");
-
-        document.getElementById("feed-grid").innerHTML = html;
-
-      } catch (err) {
-        document.getElementById("feed-grid").innerHTML = "Error loading feed.";
-      }
-    }
-
-    loadInstagramFeed();
-  </script>
+  <!-- INSTAGRAM FEED SCRIPT -->
+  <script src="scripts/feed.js"></script>
 
 </body>
 </html>
