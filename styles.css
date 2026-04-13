@@ -50,9 +50,12 @@ body::before{
   height:70px;
   object-fit:contain;
 }
+
+/* SOCIAL ICONS */
 .dfp-icons{
   position:absolute;
   right:20px;
+  bottom:10px; /* LOWERED ICONS — adjust 8–14px for perfect alignment */
   display:flex;
   gap:18px;
 }
@@ -152,7 +155,7 @@ body::before{
   font-weight:700;
 }
 
-/* FEED GRID (EXISTING) */
+/* FEED GRID */
 .feed-grid{
   display:grid;
   grid-template-columns:repeat(auto-fit, minmax(120px, 1fr));
@@ -169,10 +172,7 @@ body::before{
   box-shadow:0 6px 20px rgba(0,0,0,0.4);
 }
 
-/* ================================
-   INSTAGRAM FEED (NEW ADDITIONS)
-================================ */
-
+/* INSTAGRAM FEED */
 .feed-item img{
   width:100%;
   height:120px;
@@ -181,7 +181,6 @@ body::before{
   box-shadow:0 6px 20px rgba(0,0,0,0.4);
   transition:transform 0.2s ease;
 }
-
 .feed-item img:hover{
   transform:scale(1.05);
 }
