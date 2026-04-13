@@ -51,11 +51,11 @@ body::before{
   object-fit:contain;
 }
 
-/* SOCIAL ICONS */
+/* SOCIAL ICONS (desktop default) */
 .dfp-icons{
   position:absolute;
   right:20px;
-  bottom:-30px;
+  bottom:10px;
   display:flex;
   gap:18px;
 }
@@ -186,11 +186,22 @@ body::before{
 }
 
 /* ============================
-   MOBILE LOGO RESIZE
+   MOBILE HEADER TWEAKS
 ============================ */
 @media (max-width: 600px) {
+
+  /* keep same header height, just scale content */
+  .dfp-header {
+    height:120px;
+  }
+
   .dfp-logo {
     height:50px;
+  }
+
+  /* lower icons ONLY on mobile, flush to bottom */
+  .dfp-icons {
+    bottom:0;
   }
 }
 
