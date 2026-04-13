@@ -41,6 +41,7 @@ body::before{
 .dfp-header-inner{
   width:100%;
   max-width:1200px;
+  height:100%;          /* ✅ make inner fill full header height */
   display:flex;
   align-items:center;
   justify-content:center;
@@ -190,7 +191,6 @@ body::before{
 ============================ */
 @media (max-width: 600px) {
 
-  /* keep same header height, just scale content */
   .dfp-header {
     height:120px;
   }
@@ -199,7 +199,7 @@ body::before{
     height:50px;
   }
 
-  /* lower icons ONLY on mobile, flush to bottom */
+  /* now bottom:0 is the true bottom of the header */
   .dfp-icons {
     bottom:0;
   }
