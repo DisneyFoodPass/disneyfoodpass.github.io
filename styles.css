@@ -55,7 +55,7 @@ body::before{
 .dfp-icons{
   position:absolute;
   right:20px;
-  bottom:-20px; /* LOWERED ICONS — adjust 8–14px for perfect alignment */
+  bottom:-30px; /* LOWERED ICONS — adjust 8–14px for perfect alignment */
   display:flex;
   gap:18px;
 }
