@@ -16,16 +16,16 @@
 
       <div class="dfp-icons">
         <a href="https://instagram.com/disneyfoodpass" target="_blank">
-          <img src="icons/instagram.png" alt="Instagram">
+          <img src="assets/icons/instagram.png" alt="Instagram">
         </a>
         <a href="https://tiktok.com/@disneyfoodpass" target="_blank">
-          <img src="icons/tiktok.png" alt="TikTok">
+          <img src="assets/icons/tiktok.png" alt="TikTok">
         </a>
         <a href="https://facebook.com/disneyfoodpass" target="_blank">
-          <img src="icons/facebook.png" alt="Facebook">
+          <img src="assets/icons/facebook.png" alt="Facebook">
         </a>
         <a href="https://venmo.com/disneyfoodpass" target="_blank">
-          <img src="icons/venmo.png" alt="Venmo">
+          <img src="assets/icons/venmo.png" alt="Venmo">
         </a>
       </div>
     </div>
@@ -48,17 +48,19 @@
     <section class="dfp-featured">
       <div class="featured-grid">
 
-        <!-- Replace these 3 URLs with your pinned posts -->
-        <a class="featured-item" href="https://www.instagram.com/p/DVriNVPErth/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" target="_blank">
-          <img src="PASTE_IMAGE_URL_1" alt="Featured Post 1">
+        <!-- FEATURED POST 1 -->
+        <a class="featured-item" href="https://www.instagram.com/p/DVriNVPErth/?img_index=1" target="_blank">
+          <img src="https://scontent.cdninstagram.com/v/t51.29350-15/441020983_184083...jpg" alt="Featured Post 1">
         </a>
 
-        <a class="featured-item" href="PASTE_POST_URL_2" target="_blank">
-          <img src="PASTE_IMAGE_URL_2" alt="Featured Post 2">
+        <!-- FEATURED POST 2 -->
+        <a class="featured-item" href="https://www.instagram.com/p/DVuG1eekrFb/" target="_blank">
+          <img src="https://scontent.cdninstagram.com/v/t51.29350-15/441095...jpg" alt="Featured Post 2">
         </a>
 
-        <a class="featured-item" href="PASTE_POST_URL_3" target="_blank">
-          <img src="PASTE_IMAGE_URL_3" alt="Featured Post 3">
+        <!-- FEATURED POST 3 -->
+        <a class="featured-item" href="https://www.instagram.com/p/DVriNVPErth/?img_index=2" target="_blank">
+          <img src="https://scontent.cdninstagram.com/v/t51.29350-15/441021...jpg" alt="Featured Post 3">
         </a>
 
       </div>
@@ -73,11 +75,11 @@
 
     <!-- EMAIL FORM -->
     <section class="dfp-email">
-      <form class="email-form">
-        <input type="email" placeholder="Enter your email" required>
+      <form id="early-form" class="email-form" action="https://formspree.io/f/mjkbqvjq" method="POST">
+        <input type="email" name="email" placeholder="Enter your email" required>
         <button type="submit" class="btn">Send Me the Guide!</button>
       </form>
-      <p class="form-note">No spam. Just magic.</p>
+      <p id="form-msg" class="form-note">No spam. Just magic.</p>
     </section>
 
     <!-- LATEST TITLE -->
@@ -93,34 +95,7 @@
   </main>
 
   <!-- INSTAGRAM FEED SCRIPT -->
-  <script>
-    async function loadInstagramFeed() {
-      try {
-        const response = await fetch("https://disneyfoodpass-instagram.disneyfoodpass.workers.dev/instagram");
-        const data = await response.json();
-
-        if (!data.data) {
-          document.getElementById("feed-grid").innerHTML = "Unable to load Instagram feed.";
-          return;
-        }
-
-        const posts = data.data;
-
-        const html = posts.map(post => `
-          <a href="${post.permalink}" target="_blank">
-            <img src="${post.media_type === 'VIDEO' ? post.thumbnail_url : post.media_url}" alt="Instagram Post">
-          </a>
-        `).join("");
-
-        document.getElementById("feed-grid").innerHTML = html;
-
-      } catch (err) {
-        document.getElementById("feed-grid").innerHTML = "Error loading feed.";
-      }
-    }
-
-    loadInstagramFeed();
-  </script>
+  <script src="feed.js"></script>
 
 </body>
 </html>
