@@ -55,7 +55,7 @@ body::before{
 .dfp-icons{
   position:absolute;
   right:20px;
-  bottom:-90px; /* stays inside header so logo stays fixed */
+  bottom:10px; /* stays inside header so logo stays fixed */
   display:flex;
   gap:18px;
 }
@@ -197,7 +197,7 @@ body::before{
 
   /* Keep icons visually low but inside header */
   .dfp-icons {
-    bottom:-60px;
+    bottom:10px;
   }
 
   /* Scale logo down so it fits cleanly */
