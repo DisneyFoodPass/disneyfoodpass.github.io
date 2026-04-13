@@ -197,7 +197,7 @@ body::before{
 
   /* Keep icons visually low but inside header */
   .dfp-icons {
-    bottom:-90px;
+    bottom:-60px;
   }
 
   /* Scale logo down so it fits cleanly */
