@@ -51,11 +51,11 @@ body::before{
   object-fit:contain;
 }
 
-/* SOCIAL ICONS */
+/* SOCIAL ICONS — DESKTOP DEFAULT */
 .dfp-icons{
   position:absolute;
   right:20px;
-  bottom:10px; /* stays inside header so logo stays fixed */
+  bottom:10px; /* desktop perfect position */
   display:flex;
   gap:18px;
 }
@@ -195,9 +195,9 @@ body::before{
     height:150px;
   }
 
-  /* Keep icons visually low but inside header */
+  /* LOWER ICONS ONLY ON MOBILE */
   .dfp-icons {
-    bottom:1px;
+    bottom:4px; /* adjust 2–8px until perfect */
   }
 
   /* Scale logo down so it fits cleanly */
