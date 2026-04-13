@@ -55,7 +55,7 @@ body::before{
 .dfp-icons{
   position:absolute;
   right:20px;
-  bottom:10px; /* desktop perfect position */
+  bottom:10px;
   display:flex;
   gap:18px;
 }
@@ -190,19 +190,21 @@ body::before{
 ============================ */
 @media (max-width: 600px) {
 
-  /* Make header taller so logo + icons fit inside */
+  /* Make header taller so everything fits */
   .dfp-header {
     height:150px;
+    align-items:flex-start; /* STOP vertical centering */
   }
 
-  /* LOWER ICONS ONLY ON MOBILE */
-  .dfp-icons {
-    bottom:4px; /* adjust 2–8px until perfect */
-  }
-
-  /* Scale logo down so it fits cleanly */
+  /* Re-center logo manually */
   .dfp-logo {
     height:50px;
+    margin-top:20px; /* centers it visually */
+  }
+
+  /* Icons now can sit flush at the bottom */
+  .dfp-icons {
+    bottom:0;
   }
 }
 
