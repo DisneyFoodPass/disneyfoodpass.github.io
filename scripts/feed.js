@@ -30,27 +30,31 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // ===============================
-  // INSTAGRAM FEED LOADER
+  // MAIN INSTAGRAM FEED LOADER
   // ===============================
   async function loadInstagramFeed() {
     try {
       const response = await fetch("https://disneyfoodpass-instagram.disneyfoodpass.workers.dev/instagram");
-      const data = await response.json();
+      const posts = await response.json();
 
-      if (!data.data) {
-        document.getElementById("feed-grid").innerHTML = "Unable to load Instagram feed.";
-        return;
-      }
+      const feedGrid = document.getElementById("feed-grid");
+      feedGrid.innerHTML = "";
 
-      const posts = data.data;
+      posts.forEach(post => {
+        const imgUrl = post.media_url;
+        const link = post.permalink;
 
-      const html = posts.map(post => `
-        <a href="${post.permalink}" target="_blank" class="feed-item">
-          <img src="${post.media_type === 'VIDEO' ? post.thumbnail_url : post.media_url}" alt="Instagram Post">
-        </a>
-      `).join("");
+        const item = document.createElement("a");
+        item.className = "feed-item";
+        item.href = link;
+        item.target = "_blank";
 
-      document.getElementById("feed-grid").innerHTML = html;
+        item.innerHTML = `
+          <img src="${imgUrl}" alt="Instagram Post">
+        `;
+
+        feedGrid.appendChild(item);
+      });
 
     } catch (err) {
       document.getElementById("feed-grid").innerHTML = "Error loading feed.";
@@ -58,4 +62,44 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   loadInstagramFeed();
+
+
+  // ===============================
+  // FEATURED POSTS AUTO-LOADER
+  // ===============================
+  async function loadFeaturedPosts() {
+    try {
+      const response = await fetch("https://disneyfoodpass-instagram.disneyfoodpass.workers.dev/instagram");
+      const posts = await response.json();
+
+      const featuredItems = document.querySelectorAll("[data-featured-id]");
+
+      featuredItems.forEach(item => {
+        const id = item.getAttribute("data-featured-id");
+
+        // Support carousel syntax: shortcode-2 means second slide
+        const [shortcode, index] = id.split("-");
+        const slideIndex = index ? parseInt(index) - 1 : 0;
+
+        // Find matching post by shortcode
+        const post = posts.find(p => p.permalink.includes(shortcode));
+        if (!post) return;
+
+        // If carousel, use children array
+        const imageUrl =
+          post.children?.[slideIndex]?.media_url || post.media_url;
+
+        item.innerHTML = `
+          <a href="${post.permalink}" target="_blank">
+            <img src="${imageUrl}" alt="Featured Post">
+          </a>
+        `;
+      });
+
+    } catch (err) {
+      console.error("Featured posts failed:", err);
+    }
+  }
+
+  loadFeaturedPosts();
 });
