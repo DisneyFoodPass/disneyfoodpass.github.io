@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="styles.css?v=10" />
   <title>DisneyFoodPass</title>
 </head>
 
@@ -16,7 +16,7 @@
       <!-- LOGO -->
       <img src="images/1DisneyFoodPassFontWHITE.png" class="dfp-logo" alt="DisneyFoodPass Logo">
 
-      <!-- SOCIAL ICONS (must stay inside dfp-header-inner) -->
+      <!-- SOCIAL ICONS -->
       <div class="dfp-icons">
         <a href="https://instagram.com/disneyfoodpass" target="_blank">
           <img src="images/icons/instagram.png" alt="Instagram">
@@ -48,36 +48,18 @@
       </h1>
     </section>
 
-    <!-- FEATURED POSTS -->
+    <!-- FEATURED POSTS (AUTO-UPDATING) -->
     <section class="dfp-featured">
-      <div class="featured-grid">
+      <div class="featured-grid" id="featured-grid">
 
         <!-- FEATURED POST 1 -->
-        <a class="featured-item" 
-           href="https://www.instagram.com/p/DVriNVPErth/?img_index=1" 
-           target="_blank">
-          <img 
-            src="https://scontent.cdninstagram.com/v/t51.29350-15/441020983_18408301397694014_9218983411259246660_n.jpg" 
-            alt="Featured Post 1">
-        </a>
+        <div class="featured-item" data-featured-id="DVriNVPErth"></div>
 
         <!-- FEATURED POST 2 -->
-        <a class="featured-item" 
-           href="https://www.instagram.com/p/DVuG1eekrFb/" 
-           target="_blank">
-          <img 
-            src="https://scontent.cdninstagram.com/v/t51.29350-15/441095123_18408301397694014_9218983411259246660_n.jpg" 
-            alt="Featured Post 2">
-        </a>
+        <div class="featured-item" data-featured-id="DVuG1eekrFb"></div>
 
-        <!-- FEATURED POST 3 -->
-        <a class="featured-item" 
-           href="https://www.instagram.com/p/DVriNVPErth/?img_index=2" 
-           target="_blank">
-          <img 
-            src="https://scontent.cdninstagram.com/v/t51.29350-15/441021456_18408301397694014_9218983411259246660_n.jpg" 
-            alt="Featured Post 3">
-        </a>
+        <!-- FEATURED POST 3 (carousel slide 2) -->
+        <div class="featured-item" data-featured-id="DVriNVPErth-2"></div>
 
       </div>
     </section>
@@ -111,7 +93,7 @@
   </main>
 
   <!-- INSTAGRAM FEED SCRIPT -->
-  <script src="scripts/feed.js"></script>
+  <script src="scripts/feed.js?v=10"></script>
 
 </body>
 </html>
