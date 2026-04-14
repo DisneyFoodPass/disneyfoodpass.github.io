@@ -37,21 +37,24 @@ document.addEventListener('DOMContentLoaded', () => {
       const response = await fetch("https://disneyfoodpass-instagram.disneyfoodpass.workers.dev/instagram");
       const data = await response.json();
 
-      // Your Worker returns { data: [...] }
       const posts = data.data;
-
       const feedGrid = document.getElementById("feed-grid");
       feedGrid.innerHTML = "";
 
       posts.forEach(post => {
-        const imgUrl = post.media_type === "VIDEO" ? post.thumbnail_url : post.media_url;
+        const isVideo = post.media_type === "VIDEO";
+        const imgUrl = isVideo
+          ? (post.thumbnail_url || post.media_url)
+          : post.media_url;
 
         const item = document.createElement("a");
         item.className = "feed-item";
         item.href = post.permalink;
         item.target = "_blank";
 
-        item.innerHTML = `<img src="${imgUrl}" alt="Instagram Post">`;
+        item.innerHTML = `
+          <img src="${imgUrl}" alt="Instagram Post">
+        `;
 
         feedGrid.appendChild(item);
       });
@@ -72,9 +75,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const response = await fetch("https://disneyfoodpass-instagram.disneyfoodpass.workers.dev/instagram");
       const data = await response.json();
 
-      // Your Worker returns { data: [...] }
       const posts = data.data;
-
       const featuredItems = document.querySelectorAll("[data-featured-id]");
 
       featuredItems.forEach(item => {
@@ -88,15 +89,42 @@ document.addEventListener('DOMContentLoaded', () => {
         const post = posts.find(p => p.permalink.includes(shortcode));
         if (!post) return;
 
-        // If carousel, use children array
-        const imageUrl =
-          post.children?.[slideIndex]?.media_url || post.media_url;
+        let mediaUrl = post.media_url;
+        let mediaType = post.media_type;
 
-        item.innerHTML = `
-          <a href="${post.permalink}" target="_blank">
-            <img src="${imageUrl}" alt="Featured Post">
-          </a>
-        `;
+        // If carousel, override with slide media
+        if (post.media_type === "CAROUSEL_ALBUM" && post.children?.length) {
+          const child = post.children[slideIndex] || post.children[0];
+          mediaUrl = child.media_url;
+          mediaType = child.media_type;
+        }
+
+        // VIDEO (Reels, etc.)
+        if (mediaType === "VIDEO") {
+          item.innerHTML = `
+            <a href="${post.permalink}" target="_blank">
+              <video
+                src="${mediaUrl}"
+                muted
+                autoplay
+                loop
+                playsinline
+                style="width:100%;border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,0.5);">
+              </video>
+            </a>
+          `;
+        } else {
+          // IMAGE
+          item.innerHTML = `
+            <a href="${post.permalink}" target="_blank">
+              <img
+                src="${mediaUrl}"
+                alt="Featured Post"
+                style="width:100%;border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,0.5);">
+              </img>
+            </a>
+          `;
+        }
       });
 
     } catch (err) {
