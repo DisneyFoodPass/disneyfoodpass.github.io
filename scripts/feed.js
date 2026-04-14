@@ -35,23 +35,23 @@ document.addEventListener('DOMContentLoaded', () => {
   async function loadInstagramFeed() {
     try {
       const response = await fetch("https://disneyfoodpass-instagram.disneyfoodpass.workers.dev/instagram");
-      const posts = await response.json();
+      const data = await response.json();
+
+      // Your Worker returns { data: [...] }
+      const posts = data.data;
 
       const feedGrid = document.getElementById("feed-grid");
       feedGrid.innerHTML = "";
 
       posts.forEach(post => {
-        const imgUrl = post.media_url;
-        const link = post.permalink;
+        const imgUrl = post.media_type === "VIDEO" ? post.thumbnail_url : post.media_url;
 
         const item = document.createElement("a");
         item.className = "feed-item";
-        item.href = link;
+        item.href = post.permalink;
         item.target = "_blank";
 
-        item.innerHTML = `
-          <img src="${imgUrl}" alt="Instagram Post">
-        `;
+        item.innerHTML = `<img src="${imgUrl}" alt="Instagram Post">`;
 
         feedGrid.appendChild(item);
       });
@@ -70,7 +70,10 @@ document.addEventListener('DOMContentLoaded', () => {
   async function loadFeaturedPosts() {
     try {
       const response = await fetch("https://disneyfoodpass-instagram.disneyfoodpass.workers.dev/instagram");
-      const posts = await response.json();
+      const data = await response.json();
+
+      // Your Worker returns { data: [...] }
+      const posts = data.data;
 
       const featuredItems = document.querySelectorAll("[data-featured-id]");
 
