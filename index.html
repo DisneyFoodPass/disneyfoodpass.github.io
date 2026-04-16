@@ -3,27 +3,23 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="styles.css?v=10" />
+  <link rel="stylesheet" href="styles.css?v=11" />
 
-  <!-- ⭐ SEO TITLE + DESCRIPTION ⭐ -->
   <title>@DisneyFoodPass — Ultimate Disneyland Foodie Breakdown</title>
-
   <meta name="description" content="The Only Disneyland & Disney California Adventure Foodie Guide You’ll Ever Need, Guaranteed!" />
 
-  <!-- ⭐ OpenGraph (Google + Social Previews) ⭐ -->
   <meta property="og:title" content="@DisneyFoodPass — Ultimate Disneyland Foodie Breakdown" />
   <meta property="og:description" content="The Only Disneyland & Disney California Adventure Foodie Guide You’ll Ever Need, Guaranteed!" />
   <meta property="og:site_name" content="@DisneyFoodPass" />
   <meta property="og:type" content="website" />
 
-  <!-- ⭐ Favicon (JPEG in root folder) ⭐ -->
   <link rel="icon" type="image/jpeg" href="@DisneyFoodPassFavicon.jpeg" />
   <link rel="apple-touch-icon" href="@DisneyFoodPassFavicon.jpeg" />
 </head>
 
 <body>
 
-  <!-- FIXED HEADER -->
+  <!-- HEADER -->
   <header class="dfp-header">
     <div class="dfp-header-inner">
       <img src="images/1DisneyFoodPassFontWHITE.png" class="dfp-logo" alt="DisneyFoodPass Logo">
@@ -47,7 +43,7 @@
 
   <main>
 
-    <!-- HERO HEADLINE -->
+    <!-- HERO -->
     <section class="dfp-hero">
       <h1 class="dfp-headline">
         The Only Disney Foodie Guide You'll Ever Neeeed Guranteeeeed*
@@ -92,11 +88,16 @@
           <img src="images/reviews/static-review.jpg" alt="Static Review">
         </div>
 
-        <!-- RIGHT SLIDER -->
+        <!-- RIGHT CAROUSEL -->
         <div class="review-carousel">
-          <div class="review-slider">
 
-            <!-- 20 REVIEW IMAGES (.jpg) -->
+          <!-- Fade edges -->
+          <div class="fade-left"></div>
+          <div class="fade-right"></div>
+
+          <div class="review-track">
+
+            <!-- 20 REVIEW IMAGES -->
             <div class="review-slide"><img src="images/reviews/review1.jpg"></div>
             <div class="review-slide"><img src="images/reviews/review2.jpg"></div>
             <div class="review-slide"><img src="images/reviews/review3.jpg"></div>
@@ -119,6 +120,10 @@
             <div class="review-slide"><img src="images/reviews/review20.jpg"></div>
 
           </div>
+
+          <!-- Pagination dots -->
+          <div class="review-dots"></div>
+
         </div>
 
       </div>
@@ -137,48 +142,74 @@
   </main>
 
   <!-- INSTAGRAM FEED SCRIPT -->
-  <script src="scripts/feed.js?v=10"></script>
+  <script src="scripts/feed.js?v=11"></script>
 
-  <!-- ⭐ REVIEWS SLIDER SCRIPT ⭐ -->
+  <!-- ⭐ PREMIUM CAROUSEL JS ⭐ -->
   <script>
-    const slider = document.querySelector('.review-slider');
-    const slides = document.querySelectorAll('.review-slide');
+    const track = document.querySelector('.review-track');
+    const slides = Array.from(document.querySelectorAll('.review-slide'));
+    const dotsContainer = document.querySelector('.review-dots');
+
     let index = 0;
     let interval;
 
-    function startSlider() {
-      interval = setInterval(() => {
-        index = (index + 1) % slides.length;
-        slider.style.transform = `translateX(-${index * 100}%)`;
-      }, 2500);
+    /* Create dots */
+    slides.forEach((_, i) => {
+      const dot = document.createElement('div');
+      if (i === 0) dot.classList.add('active');
+      dotsContainer.appendChild(dot);
+    });
+
+    const dots = Array.from(dotsContainer.children);
+
+    function updateCarousel() {
+      const offset = index * (320 + 20);
+      track.style.transform = `translateX(calc(50% - ${offset}px - 160px))`;
+
+      slides.forEach(s => s.classList.remove('active'));
+      slides[index].classList.add('active');
+
+      dots.forEach(d => d.classList.remove('active'));
+      dots[index].classList.add('active');
     }
 
-    function stopSlider() {
+    function nextSlide() {
+      index = (index + 1) % slides.length;
+      updateCarousel();
+    }
+
+    function startAuto() {
+      interval = setInterval(nextSlide, 2600);
+    }
+
+    function stopAuto() {
       clearInterval(interval);
     }
 
-    startSlider();
-
-    slider.addEventListener('mouseenter', stopSlider);
-    slider.addEventListener('mouseleave', startSlider);
+    track.addEventListener('mouseenter', stopAuto);
+    track.addEventListener('mouseleave', startAuto);
 
     let startX = 0;
 
-    slider.addEventListener('touchstart', (e) => {
-      stopSlider();
+    track.addEventListener('touchstart', e => {
+      stopAuto();
       startX = e.touches[0].clientX;
+    }, { passive: true });
+
+    track.addEventListener('touchend', e => {
+      const diff = startX - e.changedTouches[0].clientX;
+
+      if (diff > 40) nextSlide();
+      else if (diff < -40) {
+        index = (index - 1 + slides.length) % slides.length;
+        updateCarousel();
+      }
+
+      startAuto();
     });
 
-    slider.addEventListener('touchend', (e) => {
-      const endX = e.changedTouches[0].clientX;
-      const diff = startX - endX;
-
-      if (diff > 50) index = (index + 1) % slides.length;
-      else if (diff < -50) index = (index - 1 + slides.length) % slides.length;
-
-      slider.style.transform = `translateX(-${index * 100}%)`;
-      startSlider();
-    });
+    updateCarousel();
+    startAuto();
   </script>
 
 </body>
