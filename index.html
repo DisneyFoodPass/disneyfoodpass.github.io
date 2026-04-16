@@ -237,7 +237,7 @@
       }, { passive: true });
 
       track.addEventListener('touchend', e => {
-        const diff = startX - e.changedTouches[0].clientClientX;
+        const diff = startX - e.changedTouches[0].clientX;
         if (diff > 40) nextSlide();
         else if (diff < -40) prevSlide();
         restartAuto();
