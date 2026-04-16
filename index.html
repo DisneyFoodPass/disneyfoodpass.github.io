@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <link rel="stylesheet" href="styles.css?v=23" />
+  <link rel="stylesheet" href="styles.css?v=24" />
 
   <title>@DisneyFoodPass — Ultimate Disneyland Foodie Breakdown</title>
   <meta name="description" content="The Only Disneyland & Disney California Adventure Foodie Guide You’ll Ever Need, Guaranteed!" />
@@ -140,9 +140,9 @@
   </main>
 
   <!-- INSTAGRAM FEED SCRIPT -->
-  <script src="scripts/feed.js?v=23"></script>
+  <script src="scripts/feed.js?v=24"></script>
 
-  <!-- ⭐ DYNAMIC CENTERED CAROUSEL JS ⭐ -->
+  <!-- ⭐ FULL‑WIDTH SLIDE CAROUSEL JS ⭐ -->
   <script>
     (function () {
       const track = document.querySelector('.review-track');
@@ -156,12 +156,15 @@
       let index = 0;
       let interval = null;
 
+      function measure() {
+        slideWidth = Math.round(carousel.getBoundingClientRect().width);
+      }
+
       function buildDots() {
         dotsContainer.innerHTML = '';
         slides.forEach((_, i) => {
           const dot = document.createElement('div');
-          dot.className = i === 0 ? 'active' : '';
-          dot.setAttribute('data-index', i);
+          if (i === 0) dot.classList.add('active');
           dot.addEventListener('click', () => {
             index = i;
             updateCarousel();
@@ -171,21 +174,9 @@
         });
       }
 
-      function measure() {
-        slideWidth = Math.round(slides[0].getBoundingClientRect().width);
-      }
-
-      function centeredOffsetForIndex(i) {
-        const carouselWidth = Math.round(carousel.getBoundingClientRect().width);
-        const rawOffset = Math.round(i * slideWidth - (carouselWidth - slideWidth) / 2);
-        const trackWidth = Math.round(track.getBoundingClientRect().width);
-        const maxOffset = Math.max(0, trackWidth - carouselWidth);
-        return Math.min(Math.max(0, rawOffset), maxOffset);
-      }
-
       function updateCarousel() {
         if (!slideWidth) measure();
-        const offset = centeredOffsetForIndex(index);
+        const offset = index * slideWidth;
         track.style.transform = `translateX(-${offset}px)`;
         const dots = Array.from(dotsContainer.children);
         dots.forEach(d => d.classList.remove('active'));
@@ -264,11 +255,6 @@
         }, 120);
       });
 
-      window.__dfpCarousel = {
-        next: nextSlide,
-        prev: prevSlide,
-        go: i => { index = Math.max(0, Math.min(i, slides.length - 1)); updateCarousel(); }
-      };
     })();
   </script>
 
