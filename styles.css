@@ -76,6 +76,11 @@ body::before{
   height:36px;
 }
 
+/* MOBILE ICON ROW (HIDDEN ON DESKTOP) */
+.dfp-icons-row {
+  display:none;
+}
+
 /* HERO */
 .dfp-hero{
   padding-top:160px;
@@ -278,78 +283,4 @@ body::before{
   height: 8px;
   border-radius: 50%;
   background: rgba(255,255,255,0.35);
-  transition: background 0.3s, transform 0.3s;
-}
-
-.review-dots .active {
-  background: rgba(255,255,255,0.95);
-  transform: scale(1.8);
-}
-
-/* MOBILE CAROUSEL */
-@media (max-width: 900px) {
-  .reviews-container {
-    flex-direction: column;
-  }
-
-  .review-carousel {
-    width: 300px;
-    height: 300px;
-  }
-}
-
-/* ============================
-   ⭐ MOBILE HEADER FIX ⭐
-============================ */
-@media (max-width: 600px) {
-
-  /* Restore original logo spacing */
-  .dfp-header {
-    height: auto;
-    padding: 14px 0 10px 0;
-  }
-
-  .dfp-header-inner {
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 0 16px;
-    gap: 10px;
-  }
-
-  .dfp-logo {
-    height: auto;
-    width: 70vw;
-    max-width: 300px;
-  }
-
-  /* Icons BELOW logo, right-aligned, small */
-  .dfp-icons-row {
-    width: 100%;
-    display: flex;
-    justify-content: flex-end;
-    padding-right: 12px;
-    margin-top: 4px;
-  }
-
-  .dfp-icons-row img {
-    width: 24px;
-    height: 24px;
-  }
-
-  .dfp-hero {
-    padding-top: 185px;
-  }
-}
-
-@media (max-width: 400px) {
-  .dfp-logo {
-    width: 75vw;
-    max-width: 260px;
-  }
-
-  .dfp-icons-row img {
-    width: 20px;
-    height: 20px;
-  }
-}
+  transition: background 0.3s, transform 0.3
