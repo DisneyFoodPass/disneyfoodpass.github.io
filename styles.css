@@ -51,12 +51,13 @@ body::before{
   position:relative;
 }
 
+/* DESKTOP LOGO — FIXED HEIGHT */
 .dfp-logo{
   height:70px;
   object-fit:contain;
 }
 
-/* ORIGINAL DESKTOP ICONS */
+/* DESKTOP ICONS */
 .dfp-icons{
   position:absolute;
   right:20px;
@@ -283,4 +284,88 @@ body::before{
   height: 8px;
   border-radius: 50%;
   background: rgba(255,255,255,0.35);
-  transition: background 0.3s, transform 0.3
+  transition: background 0.3s, transform 0.3s;
+}
+
+.review-dots .active {
+  background: rgba(255,255,255,0.95);
+  transform: scale(1.8);
+}
+
+/* MOBILE CAROUSEL */
+@media (max-width: 900px) {
+  .reviews-container {
+    flex-direction: column;
+  }
+
+  .review-carousel {
+    width: 300px;
+    height: 300px;
+  }
+}
+
+/* ============================
+   ⭐ MOBILE HEADER FIX ⭐
+============================ */
+@media (max-width: 600px) {
+
+  /* Hide desktop icons */
+  .dfp-icons {
+    display: none !important;
+  }
+
+  /* Show mobile icons */
+  .dfp-icons-row {
+    display: flex;
+  }
+
+  .dfp-header {
+    height: auto;
+    padding: 14px 0 10px 0;
+  }
+
+  .dfp-header-inner {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0 16px;
+    gap: 10px;
+  }
+
+  /* ⭐ FIX LOGO SCALING */
+  .dfp-logo {
+    height: auto !important;
+    width: 70vw;
+    max-width: 300px;
+  }
+
+  /* Icons BELOW logo, right-aligned */
+  .dfp-icons-row {
+    width: 100%;
+    justify-content: flex-end;
+    padding-right: 12px;
+    margin-top: 4px;
+    gap: 14px;
+  }
+
+  .dfp-icons-row img {
+    width: 24px;
+    height: 24px;
+  }
+
+  .dfp-hero {
+    padding-top: 185px;
+  }
+}
+
+@media (max-width: 400px) {
+  .dfp-logo {
+    width: 75vw;
+    max-width: 260px;
+  }
+
+  .dfp-icons-row img {
+    width: 20px;
+    height: 20px;
+  }
+}
