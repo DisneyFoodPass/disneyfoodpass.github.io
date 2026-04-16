@@ -245,9 +245,9 @@ body::before{
 /* RIGHT CAROUSEL */
 .review-carousel {
   position: relative;
-  width: 360px;
-  max-width: 360px;
-  height: 360px;
+  width: 380px;
+  max-width: 380px;
+  height: 380px;
   overflow: hidden;
   display: flex;
   justify-content: center;
@@ -263,8 +263,8 @@ body::before{
 }
 
 .review-slide {
-  width: 360px;
-  height: 360px;
+  width: 380px;
+  height: 380px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -272,8 +272,8 @@ body::before{
 }
 
 .review-slide img {
-  width: 320px;
-  height: 320px;
+  width: 360px;
+  height: 360px;
   object-fit: contain;
   border-radius: 12px;
   box-shadow: 0 10px 30px rgba(0,0,0,0.5);
@@ -309,18 +309,18 @@ body::before{
   }
 
   .review-carousel {
-    height: 280px;
-    width: 280px;
-    max-width: 280px;
+    height: 300px;
+    width: 300px;
+    max-width: 300px;
   }
 
   .review-slide {
-    width: 280px;
-    height: 280px;
+    width: 300px;
+    height: 300px;
   }
 
   .review-slide img {
-    width: 240px;
-    height: 240px;
+    width: 280px;
+    height: 280px;
   }
 }
