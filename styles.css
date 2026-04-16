@@ -25,7 +25,7 @@ body::before{
 }
 
 /* ============================
-   DESKTOP HEADER (UNCHANGED)
+   DESKTOP HEADER (CENTERED LOGO)
 ============================ */
 .dfp-header{
   position:fixed;
@@ -46,12 +46,12 @@ body::before{
   max-width:1200px;
   height:100%;
   display:flex;
-  align-items:center;
-  justify-content:center;
+  align-items:center;      /* vertical centering */
+  justify-content:center;  /* horizontal centering */
   position:relative;
 }
 
-/* DESKTOP LOGO — FIXED HEIGHT */
+/* DESKTOP LOGO */
 .dfp-logo{
   height:70px;
   object-fit:contain;
@@ -61,7 +61,7 @@ body::before{
 .dfp-icons{
   position:absolute;
   right:20px;
-  bottom:0;
+  bottom:10px; /* lifted slightly for perfect logo centering */
   display:flex;
   gap:18px;
 }
@@ -74,7 +74,7 @@ body::before{
 
 .dfp-icons img[alt="Venmo"] {
   width:36px;
-  height:36px;
+  height:auto;
 }
 
 /* MOBILE ICON ROW (HIDDEN ON DESKTOP) */
@@ -353,6 +353,12 @@ body::before{
     height: 24px;
   }
 
+  /* ⭐ FIX VENMO DISTORTION */
+  .dfp-icons-row img[alt="Venmo"] {
+    width: 28px;
+    height: auto;
+  }
+
   .dfp-hero {
     padding-top: 185px;
   }
@@ -366,6 +372,4 @@ body::before{
 
   .dfp-icons-row img {
     width: 20px;
-    height: 20px;
-  }
-}
+    height: 
