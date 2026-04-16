@@ -187,7 +187,7 @@ body::before{
 }
 
 /* ============================
-   ⭐ REVIEWS CAROUSEL ⭐
+   ⭐ FULL‑WIDTH SLIDE CAROUSEL ⭐
 ============================ */
 
 .reviews-wrapper {
@@ -225,7 +225,6 @@ body::before{
 /* RIGHT CAROUSEL */
 .review-carousel {
   position: relative;
-  flex: 0 0 380px;
   width: 380px;
   height: 380px;
   overflow: hidden;
@@ -236,38 +235,26 @@ body::before{
 
 .review-track {
   display: flex;
-  width: max-content;
   transition: transform 0.55s ease;
   will-change: transform;
 }
 
+/* ⭐ FULL‑WIDTH SLIDES */
 .review-slide {
-  flex: 0 0 380px;
-  width: 380px;
-  height: 380px;
+  flex: 0 0 100%;
+  width: 100%;
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-
-  /* ⭐ NEW FIX: force image to be visually centered */
-  padding: 0;
-  overflow: hidden;
 }
 
-/* ⭐ NEW FIX: TRUE VISUAL CENTERING */
 .review-slide img {
-  width: auto;
-  height: 100%;
-  max-width: none;
+  max-width: 100%;
+  max-height: 100%;
   object-fit: contain;
   display: block;
   margin: auto;
-
-  /* remove any inherited constraints */
-  max-height: 100%;
-  max-width: 100%;
-
-  /* keep your styling */
   border-radius: 12px;
   box-shadow: 0 10px 30px rgba(0,0,0,0.5);
 }
@@ -302,19 +289,7 @@ body::before{
   }
 
   .review-carousel {
-    height: 300px;
-    width: 300px;
-    flex: 0 0 300px;
-  }
-
-  .review-slide {
     width: 300px;
     height: 300px;
-    flex: 0 0 300px;
-  }
-
-  .review-slide img {
-    height: 100%;
-    width: auto;
   }
 }
