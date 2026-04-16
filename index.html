@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="styles.css?v=21" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="stylesheet" href="styles.css?v=23" />
 
   <title>@DisneyFoodPass — Ultimate Disneyland Foodie Breakdown</title>
   <meta name="description" content="The Only Disneyland & Disney California Adventure Foodie Guide You’ll Ever Need, Guaranteed!" />
@@ -140,82 +140,136 @@
   </main>
 
   <!-- INSTAGRAM FEED SCRIPT -->
-  <script src="scripts/feed.js?v=21"></script>
+  <script src="scripts/feed.js?v=23"></script>
 
-  <!-- ⭐ DYNAMIC WIDTH CAROUSEL JS ⭐ -->
+  <!-- ⭐ DYNAMIC CENTERED CAROUSEL JS ⭐ -->
   <script>
-    const track = document.querySelector('.review-track');
-    const slides = Array.from(document.querySelectorAll('.review-slide'));
-    const dotsContainer = document.querySelector('.review-dots');
+    (function () {
+      const track = document.querySelector('.review-track');
+      const carousel = document.querySelector('.review-carousel');
+      const slides = Array.from(document.querySelectorAll('.review-slide'));
+      const dotsContainer = document.querySelector('.review-dots');
 
-    let slideWidth = 0;
-    let index = 0;
-    let interval;
+      if (!track || !carousel || slides.length === 0) return;
 
-    function measureSlideWidth() {
-      slideWidth = slides[0].getBoundingClientRect().width;
-    }
+      let slideWidth = 0;
+      let index = 0;
+      let interval = null;
 
-    function updateCarousel() {
-      if (!slideWidth) measureSlideWidth();
-      track.style.transform = `translateX(-${index * slideWidth}px)`;
-      const dots = Array.from(dotsContainer.children);
-      dots.forEach(d => d.classList.remove('active'));
-      if (dots[index]) dots[index].classList.add('active');
-    }
+      function buildDots() {
+        dotsContainer.innerHTML = '';
+        slides.forEach((_, i) => {
+          const dot = document.createElement('div');
+          dot.className = i === 0 ? 'active' : '';
+          dot.setAttribute('data-index', i);
+          dot.addEventListener('click', () => {
+            index = i;
+            updateCarousel();
+            restartAuto();
+          });
+          dotsContainer.appendChild(dot);
+        });
+      }
 
-    function nextSlide() {
-      index = (index + 1) % slides.length;
-      updateCarousel();
-    }
+      function measure() {
+        slideWidth = Math.round(slides[0].getBoundingClientRect().width);
+      }
 
-    function startAuto() {
-      interval = setInterval(nextSlide, 2600);
-    }
+      function centeredOffsetForIndex(i) {
+        const carouselWidth = Math.round(carousel.getBoundingClientRect().width);
+        const rawOffset = Math.round(i * slideWidth - (carouselWidth - slideWidth) / 2);
+        const trackWidth = Math.round(track.getBoundingClientRect().width);
+        const maxOffset = Math.max(0, trackWidth - carouselWidth);
+        return Math.min(Math.max(0, rawOffset), maxOffset);
+      }
 
-    function stopAuto() {
-      clearInterval(interval);
-    }
+      function updateCarousel() {
+        if (!slideWidth) measure();
+        const offset = centeredOffsetForIndex(index);
+        track.style.transform = `translateX(-${offset}px)`;
+        const dots = Array.from(dotsContainer.children);
+        dots.forEach(d => d.classList.remove('active'));
+        if (dots[index]) dots[index].classList.add('active');
+      }
 
-    slides.forEach((_, i) => {
-      const dot = document.createElement('div');
-      if (i === 0) dot.classList.add('active');
-      dotsContainer.appendChild(dot);
-    });
+      function nextSlide() {
+        index = (index + 1) % slides.length;
+        updateCarousel();
+      }
 
-    track.addEventListener('mouseenter', stopAuto);
-    track.addEventListener('mouseleave', startAuto);
-
-    let startX = 0;
-
-    track.addEventListener('touchstart', e => {
-      stopAuto();
-      startX = e.touches[0].clientX;
-    }, { passive: true });
-
-    track.addEventListener('touchend', e => {
-      const diff = startX - e.changedTouches[0].clientX;
-
-      if (diff > 40) nextSlide();
-      else if (diff < -40) {
+      function prevSlide() {
         index = (index - 1 + slides.length) % slides.length;
         updateCarousel();
       }
 
-      startAuto();
-    });
+      function startAuto() {
+        stopAuto();
+        interval = setInterval(nextSlide, 2600);
+      }
 
-    window.addEventListener('load', () => {
-      measureSlideWidth();
-      updateCarousel();
-      startAuto();
-    });
+      function stopAuto() {
+        if (interval) {
+          clearInterval(interval);
+          interval = null;
+        }
+      }
 
-    window.addEventListener('resize', () => {
-      const oldWidth = slideWidth;
-      measureSlideWidth();
-      if (slideWidth !== oldWidth) updateCarousel();
-    });
+      function restartAuto() {
+        stopAuto();
+        startAuto();
+      }
+
+      let startX = 0;
+      track.addEventListener('touchstart', e => {
+        stopAuto();
+        startX = e.touches[0].clientX;
+      }, { passive: true });
+
+      track.addEventListener('touchend', e => {
+        const diff = startX - e.changedTouches[0].clientX;
+        if (diff > 40) nextSlide();
+        else if (diff < -40) prevSlide();
+        restartAuto();
+      });
+
+      carousel.addEventListener('mouseenter', stopAuto);
+      carousel.addEventListener('mouseleave', startAuto);
+
+      function waitForImages() {
+        const imgs = Array.from(document.querySelectorAll('.review-slide img'));
+        const promises = imgs.map(img => {
+          if (img.complete) return Promise.resolve();
+          return new Promise(resolve => {
+            img.addEventListener('load', resolve);
+            img.addEventListener('error', resolve);
+          });
+        });
+        return Promise.all(promises);
+      }
+
+      waitForImages().then(() => {
+        measure();
+        buildDots();
+        updateCarousel();
+        startAuto();
+      });
+
+      let resizeTimer;
+      window.addEventListener('resize', () => {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(() => {
+          const prev = slideWidth;
+          measure();
+          if (slideWidth !== prev) updateCarousel();
+        }, 120);
+      });
+
+      window.__dfpCarousel = {
+        next: nextSlide,
+        prev: prevSlide,
+        go: i => { index = Math.max(0, Math.min(i, slides.length - 1)); updateCarousel(); }
+      };
+    })();
   </script>
 
 </body>
