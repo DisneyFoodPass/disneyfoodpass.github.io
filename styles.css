@@ -229,8 +229,10 @@ body::before{
   width: 90%;
   max-width: 1200px;
   display: flex;
-  gap: 40px;
+  justify-content: center;   /* ⭐ CENTER BOTH COLUMNS AS A PAIR */
   align-items: center;
+  gap: 40px;
+  flex-wrap: nowrap;         /* ⭐ PREVENT STRETCHING + WRAPPING */
 }
 
 /* LEFT STATIC IMAGE */
@@ -245,7 +247,7 @@ body::before{
 /* RIGHT CAROUSEL */
 .review-carousel {
   position: relative;
-  flex: 0 0 380px;   /* LOCKED WIDTH */
+  flex: 0 0 380px;   /* ⭐ LOCKED WIDTH */
   width: 380px;
   height: 380px;
   overflow: hidden;
@@ -261,7 +263,7 @@ body::before{
 }
 
 .review-slide {
-  flex: 0 0 380px;   /* LOCKED WIDTH */
+  flex: 0 0 380px;   /* ⭐ LOCKED WIDTH */
   width: 380px;
   height: 380px;
   display: flex;
