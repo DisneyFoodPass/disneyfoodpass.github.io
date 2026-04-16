@@ -26,11 +26,8 @@
   <!-- FIXED HEADER -->
   <header class="dfp-header">
     <div class="dfp-header-inner">
-
-      <!-- LOGO -->
       <img src="images/1DisneyFoodPassFontWHITE.png" class="dfp-logo" alt="DisneyFoodPass Logo">
 
-      <!-- SOCIAL ICONS -->
       <div class="dfp-icons">
         <a href="https://instagram.com/disneyfoodpass" target="_blank">
           <img src="images/icons/instagram.png" alt="Instagram">
@@ -45,7 +42,6 @@
           <img src="images/icons/venmo.png" alt="Venmo">
         </a>
       </div>
-
     </div>
   </header>
 
@@ -62,19 +58,12 @@
       </h1>
     </section>
 
-    <!-- FEATURED POSTS (AUTO-UPDATING) -->
+    <!-- FEATURED POSTS -->
     <section class="dfp-featured">
       <div class="featured-grid" id="featured-grid">
-
-        <!-- FEATURED POST 1 -->
         <div class="featured-item" data-featured-id="DVriNVPErth"></div>
-
-        <!-- FEATURED POST 2 -->
         <div class="featured-item" data-featured-id="DVuG1eekrFb"></div>
-
-        <!-- FEATURED POST 3 (carousel slide 2) -->
         <div class="featured-item" data-featured-id="DVriNVPErth-2"></div>
-
       </div>
     </section>
 
@@ -94,54 +83,53 @@
       <p id="form-msg" class="form-note">No spam. Just magic.</p>
     </section>
 
-    <!-- ⭐⭐⭐ REVIEWS SECTION INSERTED HERE ⭐⭐⭐ -->
+    <!-- ⭐⭐⭐ REVIEWS SECTION ⭐⭐⭐ -->
     <section class="dfp-reviews">
       <div class="reviews-container">
 
         <!-- LEFT STATIC IMAGE -->
         <div class="review-static">
-          <img src="images/reviews/static-review.jpg" alt="Thousands of Postive Reviews">
+          <img src="images/reviews/static-review.jpg" alt="Static Review">
         </div>
 
-        <!-- RIGHT AUTO CAROUSEL -->
+        <!-- RIGHT SLIDER -->
         <div class="review-carousel">
-          <div class="carousel-track">
+          <div class="review-slider">
 
-            <!-- 20 REVIEW IMAGES -->
-            <img src="images/reviews/review1.jpg" alt="Review 1">
-            <img src="images/reviews/review2.jpg" alt="Review 2">
-            <img src="images/reviews/review3.jpg" alt="Review 3">
-            <img src="images/reviews/review4.jpg" alt="Review 4">
-            <img src="images/reviews/review5.jpg" alt="Review 5">
-            <img src="images/reviews/review6.jpg" alt="Review 6">
-            <img src="images/reviews/review7.jpg" alt="Review 7">
-            <img src="images/reviews/review8.jpg" alt="Review 8">
-            <img src="images/reviews/review9.jpg" alt="Review 9">
-            <img src="images/reviews/review10.jpg" alt="Review 10">
-            <img src="images/reviews/review11.jpg" alt="Review 11">
-            <img src="images/reviews/review12.jpg" alt="Review 12">
-            <img src="images/reviews/review13.jpg" alt="Review 13">
-            <img src="images/reviews/review14.jpg" alt="Review 14">
-            <img src="images/reviews/review15.jpg" alt="Review 15">
-            <img src="images/reviews/review16.jpg" alt="Review 16">
-            <img src="images/reviews/review17.jpg" alt="Review 17">
-            <img src="images/reviews/review18.jpg" alt="Review 18">
-            <img src="images/reviews/review19.jpg" alt="Review 19">
-            <img src="images/reviews/review20.jpg" alt="Review 20">
+            <!-- 20 REVIEW IMAGES (.jpg) -->
+            <div class="review-slide"><img src="images/reviews/review1.jpg"></div>
+            <div class="review-slide"><img src="images/reviews/review2.jpg"></div>
+            <div class="review-slide"><img src="images/reviews/review3.jpg"></div>
+            <div class="review-slide"><img src="images/reviews/review4.jpg"></div>
+            <div class="review-slide"><img src="images/reviews/review5.jpg"></div>
+            <div class="review-slide"><img src="images/reviews/review6.jpg"></div>
+            <div class="review-slide"><img src="images/reviews/review7.jpg"></div>
+            <div class="review-slide"><img src="images/reviews/review8.jpg"></div>
+            <div class="review-slide"><img src="images/reviews/review9.jpg"></div>
+            <div class="review-slide"><img src="images/reviews/review10.jpg"></div>
+            <div class="review-slide"><img src="images/reviews/review11.jpg"></div>
+            <div class="review-slide"><img src="images/reviews/review12.jpg"></div>
+            <div class="review-slide"><img src="images/reviews/review13.jpg"></div>
+            <div class="review-slide"><img src="images/reviews/review14.jpg"></div>
+            <div class="review-slide"><img src="images/reviews/review15.jpg"></div>
+            <div class="review-slide"><img src="images/reviews/review16.jpg"></div>
+            <div class="review-slide"><img src="images/reviews/review17.jpg"></div>
+            <div class="review-slide"><img src="images/reviews/review18.jpg"></div>
+            <div class="review-slide"><img src="images/reviews/review19.jpg"></div>
+            <div class="review-slide"><img src="images/reviews/review20.jpg"></div>
 
           </div>
         </div>
 
       </div>
     </section>
-    <!-- ⭐⭐⭐ END REVIEWS SECTION ⭐⭐⭐ -->
 
     <!-- LATEST TITLE -->
     <section class="dfp-latest-title">
       <h2>Latest from @DisneyFoodPass</h2>
     </section>
 
-    <!-- AUTO-UPDATING FEED -->
+    <!-- FEED -->
     <section class="dfp-feed">
       <div id="feed-grid" class="feed-grid">Loading...</div>
     </section>
@@ -151,13 +139,46 @@
   <!-- INSTAGRAM FEED SCRIPT -->
   <script src="scripts/feed.js?v=10"></script>
 
-  <!-- REVIEWS CAROUSEL SCRIPT -->
+  <!-- ⭐ REVIEWS SLIDER SCRIPT ⭐ -->
   <script>
-    const track = document.querySelector('.carousel-track');
-    if (track) {
-      const clones = track.innerHTML;
-      track.innerHTML += clones;
+    const slider = document.querySelector('.review-slider');
+    const slides = document.querySelectorAll('.review-slide');
+    let index = 0;
+    let interval;
+
+    function startSlider() {
+      interval = setInterval(() => {
+        index = (index + 1) % slides.length;
+        slider.style.transform = `translateX(-${index * 100}%)`;
+      }, 2500);
     }
+
+    function stopSlider() {
+      clearInterval(interval);
+    }
+
+    startSlider();
+
+    slider.addEventListener('mouseenter', stopSlider);
+    slider.addEventListener('mouseleave', startSlider);
+
+    let startX = 0;
+
+    slider.addEventListener('touchstart', (e) => {
+      stopSlider();
+      startX = e.touches[0].clientX;
+    });
+
+    slider.addEventListener('touchend', (e) => {
+      const endX = e.changedTouches[0].clientX;
+      const diff = startX - endX;
+
+      if (diff > 50) index = (index + 1) % slides.length;
+      else if (diff < -50) index = (index - 1 + slides.length) % slides.length;
+
+      slider.style.transform = `translateX(-${index * 100}%)`;
+      startSlider();
+    });
   </script>
 
 </body>
