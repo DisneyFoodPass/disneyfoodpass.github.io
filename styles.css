@@ -179,4 +179,148 @@ body::before{
   height:120px;
   object-fit:cover;
   border-radius:10px;
-  box-shadow:0 6px 20px rgba
+  box-shadow:0 6px 20px rgba(0,0,0,0.4);
+  transition:transform 0.2s ease;
+}
+.feed-item img:hover{
+  transform:scale(1.05);
+}
+
+/* ============================
+   MOBILE HEADER TWEAKS
+============================ */
+@media (max-width: 600px) {
+
+  .dfp-header {
+    height:150px;
+  }
+
+  .dfp-logo {
+    height:50px;
+  }
+
+  .dfp-icons {
+    bottom:0;
+  }
+
+  .dfp-hero {
+    padding-top:190px;
+  }
+}
+
+@media (max-width: 400px) {
+  .dfp-logo {
+    height:42px;
+  }
+}
+
+/* ============================
+   ⭐ PERFECT ONE‑AT‑A‑TIME CAROUSEL ⭐
+============================ */
+
+.dfp-reviews {
+  width: 100%;
+  padding: 60px 0;
+  display: flex;
+  justify-content: center;
+}
+
+.reviews-container {
+  width: 90%;
+  max-width: 1200px;
+  display: flex;
+  gap: 40px;
+  align-items: center;
+}
+
+/* LEFT STATIC IMAGE */
+.review-static img {
+  width: 100%;
+  max-width: 380px;
+  border-radius: 12px;
+  object-fit: cover;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+/* RIGHT CAROUSEL */
+.review-carousel {
+  position: relative;
+  width: 360px;
+  max-width: 360px;
+  height: 360px;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+  margin: 0 auto;
+}
+
+.review-track {
+  display: flex;
+  width: max-content;
+  transition: transform 0.55s ease;
+}
+
+.review-slide {
+  width: 360px;
+  height: 360px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.review-slide img {
+  width: 320px;
+  height: 320px;
+  object-fit: contain;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+/* Dots */
+.review-dots {
+  position: absolute;
+  bottom: -18px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px;
+}
+
+.review-dots div {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.35);
+  transition: background 0.3s, transform 0.3s;
+}
+
+.review-dots .active {
+  background: rgba(255,255,255,0.95);
+  transform: scale(1.8);
+}
+
+/* MOBILE */
+@media (max-width: 900px) {
+  .reviews-container {
+    flex-direction: column;
+  }
+
+  .review-carousel {
+    height: 280px;
+    width: 280px;
+    max-width: 280px;
+  }
+
+  .review-slide {
+    width: 280px;
+    height: 280px;
+  }
+
+  .review-slide img {
+    width: 240px;
+    height: 240px;
+  }
+}
