@@ -335,8 +335,8 @@ body::before{
   /* ⭐ FIX LOGO SCALING */
   .dfp-logo {
     height: auto !important;
-    width: 92vw;
-    max-width: 400px;
+    width: 120vw;
+    max-width: 450px;
   }
 
   /* Icons BELOW logo, right-aligned */
