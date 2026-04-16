@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="styles.css?v=11" />
+  <link rel="stylesheet" href="styles.css?v=12" />
 
   <title>@DisneyFoodPass — Ultimate Disneyland Foodie Breakdown</title>
   <meta name="description" content="The Only Disneyland & Disney California Adventure Foodie Guide You’ll Ever Need, Guaranteed!" />
@@ -91,10 +91,6 @@
         <!-- RIGHT CAROUSEL -->
         <div class="review-carousel">
 
-          <!-- Fade edges -->
-          <div class="fade-left"></div>
-          <div class="fade-right"></div>
-
           <div class="review-track">
 
             <!-- 20 REVIEW IMAGES -->
@@ -142,9 +138,9 @@
   </main>
 
   <!-- INSTAGRAM FEED SCRIPT -->
-  <script src="scripts/feed.js?v=11"></script>
+  <script src="scripts/feed.js?v=12"></script>
 
-  <!-- ⭐ PREMIUM CAROUSEL JS ⭐ -->
+  <!-- ⭐ SIMPLE CAROUSEL JS ⭐ -->
   <script>
     const track = document.querySelector('.review-track');
     const slides = Array.from(document.querySelectorAll('.review-slide'));
@@ -163,11 +159,7 @@
     const dots = Array.from(dotsContainer.children);
 
     function updateCarousel() {
-      const offset = index * (320 + 20);
-      track.style.transform = `translateX(calc(50% - ${offset}px - 160px))`;
-
-      slides.forEach(s => s.classList.remove('active'));
-      slides[index].classList.add('active');
+      track.style.transform = `translateX(-${index * 100}%)`;
 
       dots.forEach(d => d.classList.remove('active'));
       dots[index].classList.add('active');
@@ -186,9 +178,11 @@
       clearInterval(interval);
     }
 
+    /* Hover pause */
     track.addEventListener('mouseenter', stopAuto);
     track.addEventListener('mouseleave', startAuto);
 
+    /* Touch swipe */
     let startX = 0;
 
     track.addEventListener('touchstart', e => {
