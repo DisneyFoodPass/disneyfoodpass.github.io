@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="styles.css?v=20" />
+  <link rel="stylesheet" href="styles.css?v=21" />
 
   <title>@DisneyFoodPass — Ultimate Disneyland Foodie Breakdown</title>
   <meta name="description" content="The Only Disneyland & Disney California Adventure Foodie Guide You’ll Ever Need, Guaranteed!" />
@@ -140,30 +140,28 @@
   </main>
 
   <!-- INSTAGRAM FEED SCRIPT -->
-  <script src="scripts/feed.js?v=20"></script>
+  <script src="scripts/feed.js?v=21"></script>
 
-  <!-- ⭐ PERFECT ONE-AT-A-TIME CAROUSEL JS ⭐ -->
+  <!-- ⭐ DYNAMIC WIDTH CAROUSEL JS ⭐ -->
   <script>
     const track = document.querySelector('.review-track');
     const slides = Array.from(document.querySelectorAll('.review-slide'));
     const dotsContainer = document.querySelector('.review-dots');
 
-    const slideWidth = 380; // MUST MATCH CSS EXACTLY
+    let slideWidth = 0;
     let index = 0;
     let interval;
 
-    slides.forEach((_, i) => {
-      const dot = document.createElement('div');
-      if (i === 0) dot.classList.add('active');
-      dotsContainer.appendChild(dot);
-    });
-
-    const dots = Array.from(dotsContainer.children);
+    function measureSlideWidth() {
+      slideWidth = slides[0].getBoundingClientRect().width;
+    }
 
     function updateCarousel() {
+      if (!slideWidth) measureSlideWidth();
       track.style.transform = `translateX(-${index * slideWidth}px)`;
+      const dots = Array.from(dotsContainer.children);
       dots.forEach(d => d.classList.remove('active'));
-      dots[index].classList.add('active');
+      if (dots[index]) dots[index].classList.add('active');
     }
 
     function nextSlide() {
@@ -178,6 +176,12 @@
     function stopAuto() {
       clearInterval(interval);
     }
+
+    slides.forEach((_, i) => {
+      const dot = document.createElement('div');
+      if (i === 0) dot.classList.add('active');
+      dotsContainer.appendChild(dot);
+    });
 
     track.addEventListener('mouseenter', stopAuto);
     track.addEventListener('mouseleave', startAuto);
@@ -201,8 +205,17 @@
       startAuto();
     });
 
-    updateCarousel();
-    startAuto();
+    window.addEventListener('load', () => {
+      measureSlideWidth();
+      updateCarousel();
+      startAuto();
+    });
+
+    window.addEventListener('resize', () => {
+      const oldWidth = slideWidth;
+      measureSlideWidth();
+      if (slideWidth !== oldWidth) updateCarousel();
+    });
   </script>
 
 </body>
