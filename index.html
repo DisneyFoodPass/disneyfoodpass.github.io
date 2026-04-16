@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="styles.css?v=12" />
+  <link rel="stylesheet" href="styles.css?v=13" />
 
   <title>@DisneyFoodPass — Ultimate Disneyland Foodie Breakdown</title>
   <meta name="description" content="The Only Disneyland & Disney California Adventure Foodie Guide You’ll Ever Need, Guaranteed!" />
@@ -138,7 +138,7 @@
   </main>
 
   <!-- INSTAGRAM FEED SCRIPT -->
-  <script src="scripts/feed.js?v=12"></script>
+  <script src="scripts/feed.js?v=13"></script>
 
   <!-- ⭐ SIMPLE CAROUSEL JS ⭐ -->
   <script>
@@ -159,7 +159,7 @@
     const dots = Array.from(dotsContainer.children);
 
     function updateCarousel() {
-      track.style.transform = `translateX(-${index * 100}%)`;
+      track.style.transform = `translateX(-${index * 360}px)`;
 
       dots.forEach(d => d.classList.remove('active'));
       dots[index].classList.add('active');
@@ -178,7 +178,6 @@
       clearInterval(interval);
     }
 
-    /* Hover pause */
     track.addEventListener('mouseenter', stopAuto);
     track.addEventListener('mouseleave', startAuto);
 
