@@ -24,57 +24,54 @@ body::before{
   z-index:-1;
 }
 
-/* FIXED HEADER */
-.dfp-header{
-  position:fixed;
-  top:0;
-  left:0;
-  width:100%;
-  height:120px;
-  background:black;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  z-index:999;
-  box-shadow:0 4px 20px rgba(0,0,0,0.6);
-}
-.dfp-header-inner{
-  width:100%;
-  max-width:1200px;
-  height:100%;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  position:relative;
-}
-.dfp-logo{
-  height:70px;
-  object-fit:contain;
+/* HEADER */
+.dfp-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: black;
+  z-index: 999;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.6);
+  padding: 14px 0 6px 0;
 }
 
-/* SOCIAL ICONS */
-.dfp-icons{
-  position:absolute;
-  right:20px;
-  bottom:0;
-  display:flex;
-  gap:18px;
-}
-.dfp-icons img{
-  width:26px;
-  height:26px;
-  object-fit:contain;
+.dfp-header-inner {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
 }
 
-/* Venmo icon size */
-.dfp-icons img[alt="Venmo"] {
-  width:36px;
-  height:36px;
+/* LOGO */
+.dfp-logo {
+  width: 260px;
+  height: auto;
+  object-fit: contain;
+}
+
+/* ICON ROW BELOW LOGO */
+.dfp-icons-row {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 12px;
+  margin-top: 6px;
+}
+
+.dfp-icons-row img {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
 }
 
 /* HERO */
 .dfp-hero{
-  padding-top:160px;
+  padding-top: 185px;
   text-align:center;
   padding-bottom:40px;
 }
@@ -187,54 +184,6 @@ body::before{
 }
 
 /* ============================
-   ⭐ MOBILE HEADER FIX ⭐
-============================ */
-@media (max-width: 600px) {
-
-  .dfp-header {
-    height: auto;
-    padding: 12px 0;
-  }
-
-  .dfp-header-inner {
-    justify-content: center;
-    align-items: center;
-    padding: 0 16px;
-  }
-
-  .dfp-logo {
-    height: auto !important;
-    width: 70vw !important;
-    max-width: 300px;
-    object-fit: contain;
-  }
-
-  .dfp-icons {
-    position: absolute;
-    right: 10px;
-    top: 50%;
-    transform: translateY(-50%);
-    gap: 14px;
-  }
-
-  .dfp-icons img {
-    width: 22px;
-    height: 22px;
-  }
-
-  .dfp-hero {
-    padding-top: 170px;
-  }
-}
-
-@media (max-width: 400px) {
-  .dfp-logo {
-    width: 75vw !important;
-    max-width: 260px;
-  }
-}
-
-/* ============================
    ⭐ FULL‑WIDTH SLIDE CAROUSEL ⭐
 ============================ */
 
@@ -341,3 +290,14 @@ body::before{
     height: 300px;
   }
 }
+
+/* MOBILE HEADER */
+@media (max-width: 600px) {
+
+  .dfp-logo {
+    width: 70vw;
+    max-width: 300px;
+  }
+
+  .dfp-icons-row img {
+    width:
