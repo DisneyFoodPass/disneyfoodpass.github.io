@@ -300,4 +300,19 @@ body::before{
   }
 
   .dfp-icons-row img {
-    width:
+    width: 24px;
+    height: 24px;
+  }
+}
+
+@media (max-width: 400px) {
+  .dfp-logo {
+    width: 75vw;
+    max-width: 260px;
+  }
+
+  .dfp-icons-row img {
+    width: 20px;
+    height: 20px;
+  }
+}
