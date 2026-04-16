@@ -187,38 +187,9 @@ body::before{
 }
 
 /* ============================
-   MOBILE HEADER TWEAKS
-============================ */
-@media (max-width: 600px) {
-
-  .dfp-header {
-    height:150px;
-  }
-
-  .dfp-logo {
-    height:50px;
-  }
-
-  .dfp-icons {
-    bottom:0;
-  }
-
-  .dfp-hero {
-    padding-top:190px;
-  }
-}
-
-@media (max-width: 400px) {
-  .dfp-logo {
-    height:42px;
-  }
-}
-
-/* ============================
-   ⭐ PERFECT ONE‑AT‑A‑TIME CAROUSEL ⭐
+   ⭐ REVIEWS CAROUSEL ⭐
 ============================ */
 
-/* WRAPPER FIX — prevents stretching */
 .reviews-wrapper {
   width: 100%;
   display: flex;
@@ -236,10 +207,10 @@ body::before{
   width: 90%;
   max-width: 1200px;
   display: flex;
-  justify-content: center;   /* center both columns */
+  justify-content: center;
   align-items: center;
   gap: 40px;
-  flex-wrap: nowrap;         /* prevent stretching */
+  flex-wrap: nowrap;
 }
 
 /* LEFT STATIC IMAGE */
@@ -254,7 +225,7 @@ body::before{
 /* RIGHT CAROUSEL */
 .review-carousel {
   position: relative;
-  flex: 0 0 380px;   /* LOCKED WIDTH */
+  flex: 0 0 380px;
   width: 380px;
   height: 380px;
   overflow: hidden;
@@ -271,18 +242,32 @@ body::before{
 }
 
 .review-slide {
-  flex: 0 0 380px;   /* LOCKED WIDTH */
+  flex: 0 0 380px;
   width: 380px;
   height: 380px;
   display: flex;
   justify-content: center;
   align-items: center;
+
+  /* ⭐ NEW FIX: force image to be visually centered */
+  padding: 0;
+  overflow: hidden;
 }
 
+/* ⭐ NEW FIX: TRUE VISUAL CENTERING */
 .review-slide img {
-  width: 360px;
-  height: 360px;
+  width: auto;
+  height: 100%;
+  max-width: none;
   object-fit: contain;
+  display: block;
+  margin: auto;
+
+  /* remove any inherited constraints */
+  max-height: 100%;
+  max-width: 100%;
+
+  /* keep your styling */
   border-radius: 12px;
   box-shadow: 0 10px 30px rgba(0,0,0,0.5);
 }
@@ -329,7 +314,7 @@ body::before{
   }
 
   .review-slide img {
-    width: 280px;
-    height: 280px;
+    height: 100%;
+    width: auto;
   }
 }
