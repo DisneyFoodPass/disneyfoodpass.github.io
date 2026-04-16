@@ -267,6 +267,7 @@ body::before{
   display: flex;
   width: max-content;
   transition: transform 0.55s ease;
+  will-change: transform;
 }
 
 .review-slide {
