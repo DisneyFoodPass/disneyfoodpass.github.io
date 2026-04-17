@@ -337,7 +337,7 @@ body::before{
     height: auto !important;
     width: 100vw;
     max-width: 430px;
-    margin-top: 3px;
+    margin-top: 14px;
   }
 
   /* Icons BELOW logo, right-aligned */
