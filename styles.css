@@ -357,7 +357,7 @@ body::before{
   /* ⭐ FIX VENMO DISTORTION */
   .dfp-icons-row img[alt="Venmo"] {
     width: auto;
-    height: 28px;
+    height: auto;
   }
 
   .dfp-hero {
