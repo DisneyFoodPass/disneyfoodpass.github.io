@@ -345,8 +345,8 @@ body::before{
     width: 100%;
     justify-content: flex-end;
     padding-right: 12px;
-    margin-top: 1px;
-    gap: 4px;
+    margin-top: 11px;
+    gap: 14px;
   }
 
   .dfp-icons-row img {
