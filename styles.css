@@ -377,7 +377,7 @@ body::before{
   }
 
   .dfp-icons-row img[alt="Venmo"] {
-    width: 38px;
-    height: auto;
+    width: 24px;
+    height: 24px;
   }
 }
