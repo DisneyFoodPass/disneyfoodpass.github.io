@@ -345,7 +345,7 @@ body::before{
     width: 100%;
     justify-content: flex-end;
     padding-right: 12px;
-    margin-top: 11px;
+    margin-top: 1px;
     gap: 14px;
   }
 
