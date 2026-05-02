@@ -92,7 +92,7 @@
 
     <!-- EMAIL FORM -->
     <section class="dfp-email">
-      <form id="early-form" class="email-form" action="https://formspree.io/f/mjkbqvjq" method="POST">
+      <form id="early-form" class="email-form" action="https://dfp-email-handler.disneyfoodpass.workers.dev" method="POST">
         <input type="email" name="email" placeholder="Enter your email" required>
         <button type="submit" class="btn">Send Me the Guide!</button>
       </form>
@@ -276,6 +276,30 @@
       });
 
     })();
+  </script>
+
+  <!-- ⭐ EMAIL FORM SUCCESS HANDLER ⭐ -->
+  <script>
+    document.getElementById("early-form").addEventListener("submit", async function (e) {
+      e.preventDefault();
+
+      const form = e.target;
+      const formData = new FormData(form);
+
+      const response = await fetch(form.action, {
+        method: "POST",
+        body: formData
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        form.reset();
+        document.getElementById("form-msg").textContent = "You're in! Check your email for updates.";
+      } else {
+        document.getElementById("form-msg").textContent = "Something went wrong. Please try again.";
+      }
+    });
   </script>
 
 </body>
