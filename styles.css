@@ -150,6 +150,7 @@ body::before{
   border:none;
   padding:12px 18px;
   border-radius:10px;
+  color: #000;
   font-weight:700;
   cursor:pointer;
 }
