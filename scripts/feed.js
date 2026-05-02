@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
           headers: { 'Accept': 'application/json' }
         });
         if (res.ok) {
-          msg.textContent = 'Thanks — you are on the list. Check your inbox for confirmation.';
+          msg.textContent = 'Congrats! You will now get Early Access to the PDF in your Email before anyone else in the world, at the beginning of each foodie season!';
           form.reset();
         } else {
           const json = await res.json();
