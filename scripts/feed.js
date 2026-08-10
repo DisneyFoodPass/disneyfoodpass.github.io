@@ -101,25 +101,44 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // VIDEO (Reels, fallback, etc.)
 if (mediaType === "VIDEO") {
-  const videoSrc = mediaUrl || post.thumbnail_url;
 
-  if (!videoSrc) {
-    console.warn("No video URL found for featured post:", post);
+  // If Instagram refuses to provide a video URL, fallback to IMAGE
+  if (!mediaUrl) {
+    mediaType = "IMAGE";
+    mediaUrl = post.thumbnail_url;
+  }
+
+  // If still no media, skip
+  if (!mediaUrl) {
+    console.warn("No media found for featured post:", post);
     return;
   }
 
-  item.innerHTML = `
-    <a href="${post.permalink}" target="_blank">
-      <video
-        src="${videoSrc}"
-        muted
-        autoplay
-        loop
-        playsinline
-        style="width:100%;border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,0.5);">
-      </video>
-    </a>
-  `;
+  // If we have a real video URL, render video
+  if (mediaType === "VIDEO") {
+    item.innerHTML = `
+      <a href="${post.permalink}" target="_blank">
+        <video
+          src="${mediaUrl}"
+          muted
+          autoplay
+          loop
+          playsinline
+          style="width:100%;border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,0.5);">
+        </video>
+      </a>
+    `;
+  } else {
+    // Fallback IMAGE for Reels with no video URL
+    item.innerHTML = `
+      <a href="${post.permalink}" target="_blank">
+        <img
+          src="${mediaUrl}"
+          alt="Featured Reel Thumbnail"
+          style="width:100%;border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,0.5);">
+        </img>
+      </a>
+    `;
         } else {
           // IMAGE
           item.innerHTML = `
