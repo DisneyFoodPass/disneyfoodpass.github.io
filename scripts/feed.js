@@ -99,20 +99,27 @@ document.addEventListener('DOMContentLoaded', () => {
           mediaType = child.media_type;
         }
 
-        // VIDEO (Reels, etc.)
-        if (mediaType === "VIDEO") {
-          item.innerHTML = `
-            <a href="${post.permalink}" target="_blank">
-              <video
-                src="${mediaUrl}"
-                muted
-                autoplay
-                loop
-                playsinline
-                style="width:100%;border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,0.5);">
-              </video>
-            </a>
-          `;
+        // VIDEO (Reels, fallback, etc.)
+if (mediaType === "VIDEO") {
+  const videoSrc = mediaUrl || post.thumbnail_url;
+
+  if (!videoSrc) {
+    console.warn("No video URL found for featured post:", post);
+    return;
+  }
+
+  item.innerHTML = `
+    <a href="${post.permalink}" target="_blank">
+      <video
+        src="${videoSrc}"
+        muted
+        autoplay
+        loop
+        playsinline
+        style="width:100%;border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,0.5);">
+      </video>
+    </a>
+  `;
         } else {
           // IMAGE
           item.innerHTML = `
