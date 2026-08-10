@@ -114,17 +114,6 @@ document.addEventListener('DOMContentLoaded', () => {
             </a>
           `;
   } else {
-    // Fallback IMAGE for Reels with no video URL
-    item.innerHTML = `
-      <a href="${post.permalink}" target="_blank">
-        <img
-          src="${mediaUrl}"
-          alt="Featured Reel Thumbnail"
-          style="width:100%;border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,0.5);">
-        </img>
-      </a>
-    `;
-        } else {
           // IMAGE
           item.innerHTML = `
             <a href="${post.permalink}" target="_blank">
